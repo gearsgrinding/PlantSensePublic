@@ -3,8 +3,10 @@ var app = express();
 var bodyParser = require('body-parser');
 var mongoose = require('mongoose');
 var routes = require('./routes/router');
+var path = require('path')
 
 mongoose.connect('mongodb://localhost/test');
+app.use(express.static('public'))
 var db = mongoose.connection;
 db.on('error', console.error.bind(console, 'connection error:'));
 db.once('open', function() {
