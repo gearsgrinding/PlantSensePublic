@@ -1,84 +1,36 @@
-var express = require('express');
-var router = express.Router();
-var Box = require('../models/TestSchema');
-var router = express.Router();
+//module.exports = router;
 
-router.use(function(req, res, next){
-	next();
-})
+module.exports = function(app, passport) {
 
-router.route('/Boxes')
-	.post(function(req, res) {
-		var box = new Box();
-		box.name = req.body.name;
-		console.log(req.body.name);
-		if (typeof req.body.name  != 'undefined') {
-			box.save(function(err) {
-				if (err) {
-					res.send(err);
-				}
-				res.json({ message:'created new box'});
-			});
-		}
-		else {
-			res.send('no request body')
-		}
-	})
-
-	.get(function(req, res) {
-        Box.find(function(err, boxes) {
-            if (err)
-                res.send(err);
-
-            res.json(boxes);
-        });
-   });
-
-router.route('/Boxes/:box_id')
-    .get(function(req, res) {
-        Box.findById(req.params.bear_id, function(err, bear) {
-            if (err)
-                res.send(err);
-            res.json("success");
-        });
+    // =====================================
+    // HOME PAGE (with login links) ========
+    // =====================================
+    app.get('/', function(req, res) {
+        res.render('index.ejs'); // load the index.ejs file
     });
 
-router.route('*/view1')
-	.get(function(req, res){
-		var five = require("johnny-five");
-		var myBoard, myLed;
+    app.get('/login', function(req, res) {
+        res.render('login.ejs',{ message: req.flash('loginMessage') }); // load the index.ejs file
+    });
 
-		myBoard = new five.Board();
+    app.get('/signup', function(req, res) {
+        res.render('signup.ejs',{ message: req.flash('signupMessage') }); // load the index.ejs file
+    });
 
-		board.on("ready", function() {
-		  var val = new five.Sensor({
-		  	pin: "A2",
-		  	freq: 250
-		  });
+    app.get('/logout', function(req, res) {
+        req.logout();
+        res.redirect('/'); // load the single view file (angular will handle the page changes on the front-end)
+   	
+    });
 
-		  board.repl.inject({
-		  	pot: photoresistor
-		  });
+    app.get('*/view2',function(req, res) {
+      var five = require("johnny-five");
+			var myBoard, myLed;
+			var Temp;
 
-		  photoresistor.on("data", function() {
-	    res.json(this.value);
-	  	});
+			myBoard = new five.Board();
 
-			});
-			res.json("success");
-			console.log('router in use');
-
-	});
-
-	router.route('*/view2')
-	.get(function(req, res){
-		var five = require("johnny-five");
-		var myBoard, myLed;
-		var Temp;
-
-		myBoard = new five.Board();
-
-		board.on("ready", function() {
+			board.on("ready", function() {
 		  var sensor = new five.Sensor("A0");
 
 	  	// When the sensor value changes, log the value
@@ -92,18 +44,60 @@ router.route('*/view1')
 			});
 			res.json(Temp);
 			console.log('router in use');
+    });
 
-	});
+    app.get('*/view1',function(req, res) {
+      var five = require("johnny-five");
+			var myBoard, myLed;
 
-	router.route('*')
-		.get(function(req, res) {
-        res.sendfile('./app/index.html'); // load the single view file (angular will handle the page changes on the front-end)
-   			
+			myBoard = new five.Board();
 
-   	});
+			board.on("ready", function() {
+		  	var val = new five.Sensor({
+		  		pin: "A2",
+		  		freq: 250
+		  });
 
+		  board.repl.inject({
+		  	pot: photoresistor
+		  });
 
-module.exports = router;
+		  photoresistor.on("data", function() {
+	    	res.json(this.value);
+	  	});
+
+			});
+				res.json("success");
+				console.log('router in use');
+    });
+
+    app.post('/signup', passport.authenticate('local-signup', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/signup', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/profile', // redirect to the secure profile section
+        failureRedirect : '/login', // redirect back to the signup page if there is an error
+        failureFlash : true // allow flash messages
+    }));
+
+    app.get('/dashboard', function(req, res) {
+        res.render('index.ejs'); // load the index.ejs file
+    });
+
+  };
+
+  function isLoggedIn(req, res, next) {
+
+    // if user is authenticated in the session, carry on 
+    if (req.isAuthenticated())
+        return next();
+
+    // if they aren't redirect them to the home page
+    res.redirect('/');
+}
 
 
 
