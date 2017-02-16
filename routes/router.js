@@ -1,4 +1,5 @@
 //module.exports = router;
+var Hypothesis = mongoose.model('Hypothesis');
 
 module.exports = function(app, passport) {
 
@@ -85,6 +86,60 @@ module.exports = function(app, passport) {
 
     app.get('/dashboard', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
+    });
+
+    app.post('/hypothesis',function(req, res) {
+        hypothesis = new HypothesisModel({
+        	hypothesis:req.body.hypothesis
+        });
+
+        hypothesis.save(function(err){
+        		if(!err) {
+        		}else {
+        		}
+        });
+        res.redirect('/dashboard');
+    });
+
+    app.post('/hypothesis',function(req, res, next) {
+        Hypothesis.create(req.body, function(err, result) {
+            if (!err) {
+                return res.json(result);
+            } else {
+                return res.send(err); // 500 error
+            }
+        });
+    });
+    
+    app.get('hypothesis/:id', function(req, res) {
+        Hypothesis.get({_id: req.params.id}, function(err, result) {
+            if (!err) {
+                return res.json(result);
+            } else {
+                return res.send(err); // 500 error
+            }
+        });
+    });
+
+    app.put('hypothesis/:id', function(req, res) {
+        Hypothesis.updateById(req.params.id, req.body, function(err, result) {
+            if (!err) {
+                return res.json(result);
+             } else {
+                return res.send(err); // 500 error
+             }
+        });
+    });
+
+    app.delete('hypothesis/:id', function(req, res) {
+        Hypothesis.removeById({_id: req.params.id}, function(err, result) {
+            if (!err) {
+                return res.json(result);
+             } else {
+                console.log(err);
+                return res.send(err); // 500 error
+             }
+        });
     });
 
   };
