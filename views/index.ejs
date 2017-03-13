@@ -14,13 +14,13 @@
   <link rel="stylesheet" type="text/css" href="css/app.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/normalize.css">
   <link rel="stylesheet" href="bower_components/html5-boilerplate/dist/css/main.css">
-
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
   <script src="core.js"></script>
 
 </head>
 
-<body ng-app="components">
+<body ng-app="plantSense">
   <h3>BootStrap Tab Component</h3>
   <tabs>
     <pane title="First Tab">
@@ -32,7 +32,7 @@
   </tabs>
 
   <script type="text/javascript" charset="utf-8">
-  angular.module('components', []).
+  angular.module('plantSense', []).
   directive('tabs', function() {
     return {
       restrict: 'E',
