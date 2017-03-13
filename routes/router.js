@@ -1,6 +1,6 @@
 //module.exports = router;
 var Hypothesis = require('../models/User').Hypothesis;
-
+var path = require('path');
 module.exports = function(app, passport) {
 
     // =====================================
@@ -8,6 +8,12 @@ module.exports = function(app, passport) {
     // =====================================
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
+    });
+    app.get('/test.html',function(req, res) {
+      res.sendfile(path.resolve('views/test.html'));
+    });
+    app.get('/data.html',function(req, res) {
+      res.sendfile(path.resolve('views/data/data.html'));
     });
 
     app.get('/login', function(req, res) {
@@ -46,6 +52,8 @@ module.exports = function(app, passport) {
 			res.json(Temp);
 			console.log('router in use');
     });
+
+    
 
     app.get('*/view1',function(req, res) {
       var five = require("johnny-five");
