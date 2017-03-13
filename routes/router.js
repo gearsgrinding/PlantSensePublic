@@ -1,5 +1,5 @@
 //module.exports = router;
-var Hypothesis = mongoose.model('Hypothesis');
+var Hypothesis = require('../models/User').Hypothesis;
 
 module.exports = function(app, passport) {
 
