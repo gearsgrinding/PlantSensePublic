@@ -1,5 +1,5 @@
 //module.exports = router;
-var Hypothesis = require('../models/User').Hypothesis;
+var Hypothesis = require('../models/Models').Hypothesis;
 var path = require('path');
 module.exports = function(app, passport) {
 
