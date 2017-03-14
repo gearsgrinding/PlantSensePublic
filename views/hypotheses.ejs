@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  </head>
+  <body>
+
+<h1>Current Hypotheses</h1>
+<ul>
+  <% hypos.forEach(function(hypo) { %>
+    <li>
+      <input type="checkbox" checked>
+      <i></i>
+      <h2><%= hypo.state %></h2>
+//      <% %> if statement providing test
+      <p></p>
+    </li>
+    <% }); %>
+</ul>
+
+</body>
+</html>

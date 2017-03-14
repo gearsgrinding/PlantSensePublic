@@ -37,6 +37,8 @@
               controller: 'MainCtrl'
           }).when('/history', {
               controller: 'HistoryCtrl',
+            }).when('/hypotheses', {
+                  controller:'HypothesesCtrl',
           }).when('/data', {
               controller:'DataCtrl',
           }).when('/dashboard', {
@@ -51,7 +53,11 @@
         $scope.tabs = [{
           slug: 'dashboard',
           title: "Dashboard",
-          templateUrl:'test.ejs'
+          templateUrl:'home.ejs'
+        }, {
+          slug: 'hypotheses',
+          title: "Hypotheses",
+          templateUrl:"hypotheses.ejs"
         }, {
           slug: 'data',
           title: "Data",
@@ -59,16 +65,23 @@
         }, {
           slug: 'history',
           title: "Past Experiments",
-          templateUrl:"data.ejs"
+          templateUrl:"history.ejs"
         }];
       };
 
-      RoomCtrl = function($scope, $location) {
+      HypothesesCtrl = function($scope, $location) {
+
+      };
+
+      DataCtrl = function($scope, $location) {
+
+      };
+
+      HistoryCtrl = function($scope, $location) {
 
       };
 
       DashboardCtrl = function($scope, $location) {
-        templateURL: "data/data.ejs"
       };
 
       MainCtrl = function($scope, $location) {
