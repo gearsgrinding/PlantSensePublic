@@ -14,8 +14,8 @@ var userSchema = new schema({
 });
 
 var hypothesisSchema = new schema({
-	hypothesis: {type : String}
-  data: {type: Schema.ObjectId, ref: 'data'}
+	hypothesis: {type : String},
+  dataSchema: [dataSchema]
 });
 
 var dataSchema = new schema({
