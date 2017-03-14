@@ -52,15 +52,15 @@
         $scope.tabs = [{
           slug: 'dashboard',
           title: "Dashboard",
-          templateUrl:'test.html'
+          templateUrl:'test.ejs'
         }, {
           slug: 'data',
           title: "Data",
-          templateUrl:"data.html"
+          templateUrl:"/data/data.ejs"
         }, {
           slug: 'history',
           title: "Past Experiments",
-          templateUrl:"data.html"
+          templateUrl:"/data/data.ejs"
         }];
       };
 
@@ -69,7 +69,7 @@
       };
 
       DashboardCtrl = function($scope, $location) {
-        templateURL: "data/data.html"
+        templateURL: "data/data.ejs"
       };
 
       MainCtrl = function($scope, $location) {

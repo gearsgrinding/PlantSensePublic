@@ -9,11 +9,11 @@ module.exports = function(app, passport) {
     app.get('/', function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
-    app.get('/test.html',function(req, res) {
-      res.sendfile(path.resolve('views/test.html'));
+    app.get('/test.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/test.ejs'));
     });
-    app.get('/data.html',function(req, res) {
-      res.sendfile(path.resolve('views/data/data.html'));
+    app.get('/data.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/data/data.ejs'));
     });
 
     app.get('/login', function(req, res) {
@@ -27,7 +27,7 @@ module.exports = function(app, passport) {
     app.get('/logout', function(req, res) {
         req.logout();
         res.redirect('/'); // load the single view file (angular will handle the page changes on the front-end)
-   	
+
     });
 
     app.get('*/view2',function(req, res) {
@@ -53,7 +53,7 @@ module.exports = function(app, passport) {
 			console.log('router in use');
     });
 
-    
+
 
     app.get('*/view1',function(req, res) {
       var five = require("johnny-five");
@@ -118,7 +118,7 @@ module.exports = function(app, passport) {
             }
         });
     });
-    
+
     app.get('hypothesis/:id', function(req, res) {
         Hypothesis.get({_id: req.params.id}, function(err, result) {
             if (!err) {
@@ -154,14 +154,10 @@ module.exports = function(app, passport) {
 
   function isLoggedIn(req, res, next) {
 
-    // if user is authenticated in the session, carry on 
+    // if user is authenticated in the session, carry on
     if (req.isAuthenticated())
         return next();
 
     // if they aren't redirect them to the home page
     res.redirect('/');
 }
-
-
-
-
