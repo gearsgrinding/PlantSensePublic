@@ -60,7 +60,7 @@ body {
   transform: translate(-50%, 0);
   box-shadow: 0 10px 0 0 #ff6873 inset;
   background-color: #fefffa;
-  max-width: 450px;
+  width: 800px;
   padding: 30px;
 }
 @media (max-width: 550px) {
