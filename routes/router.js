@@ -13,7 +13,16 @@ module.exports = function(app, passport) {
       res.sendfile(path.resolve('views/test.ejs'));
     });
     app.get('/data.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/data/data.ejs'));
+      res.sendfile(path.resolve('views/data.ejs'));
+    });
+    app.get('/home.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/home.ejs'));
+    });
+     app.get('/history.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/history.ejs'));
+    });
+      app.get('/hypotheses.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/hypotheses.ejs'));
     });
 
     app.get('/login', function(req, res) {
