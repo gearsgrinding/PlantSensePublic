@@ -1,5 +1,5 @@
 //module.exports = router;
-var Hypothesis = require('../models/Models').Hypothesis;
+var hypothesisSchema = require('../models/Models').hypothesisSchema;
 var path = require('path');
 module.exports = function(app, passport) {
 
@@ -105,8 +105,8 @@ module.exports = function(app, passport) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
-    app.post('/hypothesis',function(req, res) {
-        hypothesis = new HypothesisModel({
+ /*   app.post('/hypothesis',function(req, res) {
+        hypothesis = new hypothesisSchemaModel({
         	hypothesis:req.body.hypothesis
         });
 
@@ -116,20 +116,31 @@ module.exports = function(app, passport) {
         		}
         });
         res.redirect('/dashboard');
-    });
+    }); */
 
     app.post('/hypothesis',function(req, res, next) {
-        Hypothesis.create(req.body, function(err, result) {
-            if (!err) {
-                return res.json(result);
-            } else {
-                return res.send(err); // 500 error
-            }
-        });
+        var hypothesisTemp = new hypothesisSchema();
+        hypothesisTemp.hypothesis = req.body.hypothesis;
+
+        hypothesisTemp.save(function(err) {
+            if (err)
+                res.send(err);
+
+            res.json("test");
+        })
+    });
+
+    app.get('/hypothesis',function(req, res, next) {
+         hypothesisSchema.find(function(err, hypothesis) {
+            if (err)
+                res.send(err);
+
+                res.json(hypothesis);
+        })
     });
 
     app.get('hypothesis/:id', function(req, res) {
-        Hypothesis.get({_id: req.params.id}, function(err, result) {
+        hypothesisSchema.get({_id: req.params.id}, function(err, result) {
             if (!err) {
                 return res.json(result);
             } else {
@@ -139,7 +150,7 @@ module.exports = function(app, passport) {
     });
 
     app.put('hypothesis/:id', function(req, res) {
-        Hypothesis.updateById(req.params.id, req.body, function(err, result) {
+        hypothesisSchema.updateById(req.params.id, req.body, function(err, result) {
             if (!err) {
                 return res.json(result);
              } else {
@@ -149,7 +160,7 @@ module.exports = function(app, passport) {
     });
 
     app.delete('hypothesis/:id', function(req, res) {
-        Hypothesis.removeById({_id: req.params.id}, function(err, result) {
+        hypothesisSchema.removeById({_id: req.params.id}, function(err, result) {
             if (!err) {
                 return res.json(result);
              } else {
