@@ -16,7 +16,8 @@ var userSchema = new schema({
 var hypothesisSchema = new schema({
 	hypothesis: {type : String},
   dataX: {type : String},
-  dataY: {type : String}
+  dataY: {type : String},
+  corelation: {type:String}
 });
 
 var dataSchema = new schema({

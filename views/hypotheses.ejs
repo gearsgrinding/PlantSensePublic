@@ -12,23 +12,23 @@
     <div class="container">
       <h2>New Hypothesis</h2>
 
-      <form class="form-inline">
+      <form class="form-inline" action="/hypothesis" method="post">
         <div class="form-group">
-          <select class="form-control" id="factorx">
+          <select class="form-control" name="dataX">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           and
-          <select class="form-control" id="factory">
+          <select class="form-control" name="dataY">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           are
-          <select class="form-control" id="correlated">
+          <select class="form-control" name="corelation">
             <option>positively</option>
             <option>negatively</option>
             <option>not</option>

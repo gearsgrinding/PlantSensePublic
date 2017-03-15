@@ -121,13 +121,17 @@ module.exports = function(app, passport) {
     app.post('/hypothesis',function(req, res, next) {
         var hypothesisTemp = new hypothesisSchema();
         hypothesisTemp.hypothesis = req.body.hypothesis;
+        hypothesisTemp.dataX = req.body.dataX;
+        hypothesisTemp.dataY = req.body.dataY;
+        hypothesisTemp.corleation = req.body.corelation;
 
         hypothesisTemp.save(function(err) {
             if (err)
                 res.send(err);
 
-            res.json("test");
+            res.json("post");
         })
+        res.redirect('/');
     });
 
     app.get('/hypothesis',function(req, res, next) {
@@ -137,6 +141,7 @@ module.exports = function(app, passport) {
 
                 res.json(hypothesis);
         })
+         res.redirect('/');
     });
 
     app.get('hypothesis/:id', function(req, res) {
