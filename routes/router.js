@@ -21,8 +21,8 @@ module.exports = function(app, passport) {
      app.get('/history.ejs',function(req, res) {
       res.sendfile(path.resolve('views/history.ejs'));
     });
-      app.get('/hypotheses.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/hypotheses.ejs'));
+      app.get('/current.ejs',function(req, res) {
+      res.sendfile(path.resolve('views/current.ejs'));
     });
 
     app.get('/login', function(req, res) {

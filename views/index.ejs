@@ -35,8 +35,8 @@
               controller: 'MainCtrl'
           }).when('/history', {
               controller: 'HistoryCtrl',
-            }).when('/hypotheses', {
-                  controller:'HypothesesCtrl',
+            }).when('/current', {
+                  controller:'CurrentCtrl',
           }).when('/data', {
               controller:'DataCtrl',
           }).when('/dashboard', {
@@ -50,12 +50,12 @@
       var TabCtrl = function($scope) {
         $scope.tabs = [{
           slug: 'dashboard',
-          title: "Dashboard",
+          title: "Home",
           templateUrl:'home.ejs'
         }, {
-          slug: 'hypotheses',
-          title: "Hypotheses",
-          templateUrl:"hypotheses.ejs"
+          slug: 'current',
+          title: "Current Experiments",
+          templateUrl:"current.ejs"
         }, {
           slug: 'data',
           title: "Data",
@@ -67,7 +67,7 @@
         }];
       };
 
-      HypothesesCtrl = function($scope, $location) {
+      CurrentCtrl = function($scope, $location) {
 
       };
 
