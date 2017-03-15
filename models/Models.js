@@ -24,7 +24,7 @@ var dataSchema = new schema({
   field: {type : String},
   date: { type: Date, default: Date.now },
   unit: {type : String},
-  measure: {type : String}
+  measure: {type : Number}
 });
 
 hypothesisSchema.statics = {
