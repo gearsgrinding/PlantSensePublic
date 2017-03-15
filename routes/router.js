@@ -1,6 +1,5 @@
 //module.exports = router;
 var hypothesisSchema = require('../models/Models').hypothesisSchema;
-var dataSchema = require('../models/Models').Data;
 var path = require('path');
 module.exports = function(app, passport) {
 
@@ -176,64 +175,8 @@ module.exports = function(app, passport) {
         });
     });
 
-    app.post('/data',function(req, res, next) {
-        var data = new dataSchema();
-        console.log(req.body);
-        data.field = req.body.field;
-        data.unit = req.body.unit;
-        data.measure = req.body.measure;
-
-        data.save(function(err) {
-            if (err)
-                res.send(err);
-
-            res.json("success")
-        })
-    });
-
-  app.get('/data',function(req, res, next) {
-         dataSchema.find(function(err, hypothesis) {
-            if (err)
-                res.send(err);
-
-                res.json(hypothesis);
-        })
-    });
-
   };
 
-    app.get('/dataBetween',function(req, res, next) {
-
-         var time1 = req.body.time1;
-         var time2 = req.body.time2;
-
-         dataSchema.find.sort([['date', 'descending']]).all(function (data) {
-
-            for (i=0;i<data.length;i++) {
-                if (data[i].date < time1 || data[i]>time2) {
-                    data.splice(i,1);
-                }
-            }
-            res.json(data);
-    });
-
-  };
-  app.get('/dataAfter',function(req, res, next) {
-
-         var time1 = req.body.time1;
-         dataSchema.find.sort([['date', 'descending']]).all(function (data) {
-
-            for (i=0;i<data.length;i++) {
-                if (data[i].date < time1) {
-                    data.splice(i,1);
-                }
-            }
-            res.json(data);
-    });
-
-  };
-
-  
   function isLoggedIn(req, res, next) {
 
     // if user is authenticated in the session, carry on
