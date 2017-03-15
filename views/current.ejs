@@ -12,29 +12,29 @@
     <div class="container">
       <h2>New Experiment</h2>
 
-      <form class="form-inline">
-        <div class="form-group">
+      <form class="form-inline" action="/hypothesis" method="post">
           <div class="form-group">
            <label for="email">New Hypothesis:</label>
-           <input type="email" class="form-control" id="hypothesis">
+           <input type="email" class="form-control" name="hypothesis">
          </div>
          <br>
-         (optional)
-          <select class="form-control" id="factorx">
+         <div class="form-group">
+           (optional)
+          <select class="form-control" name="dataX">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           and
-          <select class="form-control" id="factory">
+          <select class="form-control" name="dataY">
             <option>1</option>
             <option>2</option>
             <option>3</option>
             <option>4</option>
           </select>
           are
-          <select class="form-control" id="correlated">
+          <select class="form-control" name="corelation">
             <option>positively</option>
             <option>negatively</option>
             <option>not</option>

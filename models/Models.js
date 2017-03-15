@@ -15,7 +15,9 @@ var userSchema = new schema({
 
 var hypothesisSchema = new schema({
 	hypothesis: {type : String},
-  dataSchema: [dataSchema]
+  dataX: {type : String},
+  dataY: {type : String},
+  corelation: {type:String}
 });
 
 var dataSchema = new schema({
@@ -101,7 +103,13 @@ userSchema.methods.validPassword = function(password) {
     return bcrypt.compareSync(password, this.local.password);
 };
 
-module.exports = mongoose.model('Hypothesis', hypothesisSchema);
-module.exports = mongoose.model('Box', boxSchema);
-module.exports = mongoose.model('Login', userSchema);
-module.exports = mongoose.model('Data', dataSchema);
+var hypothesisSchema =  mongoose.model('Hypothesis', hypothesisSchema);
+var login = mongoose.model('Login', userSchema);
+var data = mongoose.model('Data', dataSchema);
+
+
+module.exports = {
+  hypothesisSchema : hypothesisSchema,
+  Login : login,
+  Data : data
+};
