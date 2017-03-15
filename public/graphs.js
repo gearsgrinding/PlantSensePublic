@@ -1,10 +1,9 @@
-
 google.charts.load('current', {'packages':['line', 'corechart']});
 google.charts.setOnLoadCallback(drawChart);
 
 function drawChart() {
 
-var button = document.getElementById('change-chart');
+var button = document.getElementById('render-chart');
 var chartDiv = document.getElementById('chart_div');
 
 var data = new google.visualization.DataTable();
@@ -75,9 +74,10 @@ vAxis: {
 };
 
 function drawMaterialChart() {
+  console.log("test");
 var materialChart = new google.charts.Line(chartDiv);
 materialChart.draw(data, materialOptions);
-button.innerText = 'Change to Classic';
+button.innerText = 'Change to Classic1';
 button.onclick = drawClassicChart;
 }
 
@@ -89,7 +89,6 @@ button.onclick = drawMaterialChart;
 }
 
 drawMaterialChart();
-
 }
 
 //
