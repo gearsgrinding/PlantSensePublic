@@ -202,6 +202,37 @@ module.exports = function(app, passport) {
 
   };
 
+    app.get('/dataBetween',function(req, res, next) {
+
+         var time1 = req.body.time1;
+         var time2 = req.body.time2;
+
+         dataSchema.find.sort([['date', 'descending']]).all(function (data) {
+
+            for (i=0;i<data.length;i++) {
+                if (data[i].date < time1 || data[i]>time2) {
+                    data.splice(i,1);
+                }
+            }
+            res.json(data);
+    });
+
+  };
+  app.get('/dataAfter',function(req, res, next) {
+
+         var time1 = req.body.time1;
+         dataSchema.find.sort([['date', 'descending']]).all(function (data) {
+
+            for (i=0;i<data.length;i++) {
+                if (data[i].date < time1) {
+                    data.splice(i,1);
+                }
+            }
+            res.json(data);
+    });
+
+  };
+
   
   function isLoggedIn(req, res, next) {
 
