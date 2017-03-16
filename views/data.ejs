@@ -4,10 +4,47 @@
 
 </head>
 <body>
-     <button id="render-chart">Change to Classic</button>
+  <form class="form-inline" action="/hypothesis" method="post">
+
+     <br>
+     <div class="form-group">
+       Choose factors to plot against each other on the x- and y-axis.
+       <br>
+   <label for="xaxis">X-axis: </label>
+      <select class="form-control" id="stringX">
+        <option>Time</option>
+        <option>Temperature</option>
+        <option>Light</option>
+        <option>pH</option>
+      </select>
+      and
+  <label for="yaxis">Y-axis: </label>
+      <select class="form-control" id="stringY">
+        <option>Time</option>
+        <option>Temperature</option>
+        <option>Light</option>
+        <option>pH</option>
+      </select>
+      <br>
+      Use data from:
+      <select class="form-control" id="timeSpan">
+        <option value="1">the past 6 hours</option>
+        <option value="2">the past day</option>
+        <option value="3">the past 3 days</option>
+        <option value="4">the past week</option>
+        <option value="5">the past 2 weeks</option>
+        <option value="6">the past month</option>
+        <option value="7">the past 2 months</option>
+      </select>
+    </div>
+    <br>
+   </form>
+ </div>
+  <button id="render-chart">Render Graph</button>
   <br><br>
   <div id="chart_div"></div>
 
+<br>
   <div class="container">
     <h2>Recent Data Values</h2>
     <div class="table-responsive">
