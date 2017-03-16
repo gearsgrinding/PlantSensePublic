@@ -19,78 +19,79 @@
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
+  <script type="text/javascript" src = "/graphs.js"></script>
 
 </head>
 
 <body ng-controller="MainCtrl">
 
-    <div ng-controller="TabCtrl">
-      <tabset>
-        <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" select="onTabSelected(tab.slug)">
-            <div ng-include="tab.templateUrl"></div>
-        </tab>
-      </tabset>
-    </div>
-    <script type="text/javascript" charset="utf-8">
-      angular.module('plantSense', ['ui.bootstrap']).config(['$routeProvider', '$locationProvider',
-      function($routeProvider, $locationProvider) {
-          $routeProvider.when('/', {
-              controller: 'MainCtrl'
-          }).when('/history', {
-              controller: 'HistoryCtrl',
-            }).when('/current', {
-                  controller:'CurrentCtrl',
-          }).when('/data', {
-              controller:'DataCtrl',
-          }).when('/dashboard', {
-              controller: 'DashboardCtrl'
-          }).otherwise({
-              redirectTo: '/'
-          });
-          $locationProvider.html5Mode(false);
-      }]);
+  <div ng-controller="TabCtrl">
+    <tabset>
+      <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" select="onTabSelected(tab.slug)">
+        <div ng-include="tab.templateUrl"></div>
+      </tab>
+    </tabset>
+  </div>
+  <script type="text/javascript" charset="utf-8">
+  angular.module('plantSense', ['ui.bootstrap']).config(['$routeProvider', '$locationProvider',
+    function($routeProvider, $locationProvider) {
+      $routeProvider.when('/', {
+        controller: 'MainCtrl'
+      }).when('/history', {
+        controller: 'HistoryCtrl',
+      }).when('/current', {
+        controller:'CurrentCtrl',
+      }).when('/data', {
+        controller:'DataCtrl',
+      }).when('/dashboard', {
+        controller: 'DashboardCtrl'
+      }).otherwise({
+        redirectTo: '/'
+      });
+      $locationProvider.html5Mode(false);
+    }]);
 
-      var TabCtrl = function($scope) {
-        $scope.tabs = [{
-          slug: 'dashboard',
-          title: "Home",
-          templateUrl:'home.ejs'
-        }, {
-          slug: 'current',
-          title: "Current Experiments",
-          templateUrl:"current.ejs"
-        }, {
-          slug: 'data',
-          title: "Data",
-          templateUrl:"data.ejs"
-        }, {
-          slug: 'history',
-          title: "Past Experiments",
-          templateUrl:"history.ejs"
-        }];
-      };
+  var TabCtrl = function($scope) {
+    $scope.tabs = [{
+      slug: 'dashboard',
+      title: "Home",
+      templateUrl:'home.ejs'
+    }, {
+      slug: 'current',
+      title: "Current Experiments",
+      templateUrl:"current.ejs"
+    }, {
+      slug: 'data',
+      title: "Data",
+      templateUrl:"data.ejs"
+    }, {
+      slug: 'history',
+      title: "Past Experiments",
+      templateUrl:"history.ejs"
+    }];
+  };
 
-      CurrentCtrl = function($scope, $location) {
+  CurrentCtrl = function($scope, $location) {
 
-      };
+  };
 
-      DataCtrl = function($scope, $location) {
+  DataCtrl = function($scope, $location) {
 
-      };
+  };
 
-      HistoryCtrl = function($scope, $location) {
+  HistoryCtrl = function($scope, $location) {
 
-      };
+  };
 
-      DashboardCtrl = function($scope, $location) {
-      };
+  DashboardCtrl = function($scope, $location) {
+  };
 
-      MainCtrl = function($scope, $location) {
+  MainCtrl = function($scope, $location) {
 
-        $scope.onTabSelected = function(tab) {
-          var route;
-          if (typeof tab === 'string') {
-              route = tab;
+    $scope.onTabSelected = function(tab) {
+      var route;
+      if (typeof tab === 'string') {
+        route = tab;
             // switch (tab) {
             //   case 'dashboard':
             //     route = tab;
@@ -104,6 +105,6 @@
         };
 
       };
-    </script>
-</body>
-</html>
+      </script>
+    </body>
+    </html>
