@@ -91,6 +91,14 @@ button.onclick = drawMaterialChart;
 drawMaterialChart();
 }
 
+function drawData() {
+    console.log("test");
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("GET", "http://localhost:8080/data", false);
+    xhttp.send();
+    var response = JSON.parse(xhttp.responseText);
+}
+
 //
 // google.charts.load('current', {'packages':['line', 'corechart']});
 // google.charts.setOnLoadCallback(drawChart(true));
