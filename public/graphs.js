@@ -1,202 +1,125 @@
-google.charts.load('current', {'packages':['line', 'corechart']});
-google.charts.setOnLoadCallback(drawChart);
+google.charts.load('current', {'packages':['line']});
+var xChoice = document.getElementById("stringX");
+var yChoice = document.getElementById("stringY");
+var timeLength = document.getElementById("timeSpan")
+document.getElementById('render_chart').onclick = function() {
+  var strX = xChoice.options[xChoice.selectedIndex].text;
+  var strY = yChoice.options[yChoice.selectedIndex].text;
+  var endTime = (new Date()).getTime();
+  var timeOffSet = findTimeOffset(timeLength);
+  var beginTime = endTime- timeOffset;
+    drawChart(strX, strY, beginTime, endTime);
+}
+ google.charts.setOnLoadCallback(drawChart);
 
-function drawChart() {
+function drawChart(x, y, beginTime, endTime) {
+ var xCol = 0;
+ var yCol = 0;
+ var data = new google.visualization.DataTable();
+switch (x) {
+  case "Time":
+   data.addColumn('number', 'Day');
+   break;
+  case "Temperature":
+   data.addColumn('number', 'Temperature');
+   xCol = 1;
+   break;
+  case "Light":
+   data.addColumn('number', 'Light');
+   xCol = 2;
+   break;
+  case "pH":
+   data.addColumn('number', 'pH');
+   xCol = 3;
+   break;
+}
+switch (y) {
+  case "Time":
+   data.addColumn('number', 'Day');
+   break;
+  case "Temperature":
+   data.addColumn('number', 'Temperature');
+   yCol = 1;
+   break;
+  case "Light":
+   data.addColumn('number', 'Light');
+   yCol = 2;
+   break;
+  case "pH":
+   data.addColumn('number', 'pH');
+   yCol = 3;
+   break;
+}
 
-var button = document.getElementById('render-chart');
-var chartDiv = document.getElementById('chart_div');
+ data.addRows(isolateCols(xCol, yCol, data(beginTime, endTime)));
 
-var data = new google.visualization.DataTable();
-data.addColumn('date', 'Month');
-data.addColumn('number', "Average Temperature");
-data.addColumn('number', "Average Hours of Daylight");
+ var options = {
+   chart: {
+     title: x + ' plotted against ' + y
+   },
+   width: 900,
+   height: 500
+ };
 
-data.addRows([
-[new Date(2014, 0),  -.5,  5.7],
-[new Date(2014, 1),   .4,  8.7],
-[new Date(2014, 2),   .5,   12],
-[new Date(2014, 3),  2.9, 15.3],
-[new Date(2014, 4),  6.3, 18.6],
-[new Date(2014, 5),    9, 20.9],
-[new Date(2014, 6), 10.6, 19.8],
-[new Date(2014, 7), 10.3, 16.6],
-[new Date(2014, 8),  7.4, 13.3],
-[new Date(2014, 9),  4.4,  9.9],
-[new Date(2014, 10), 1.1,  6.6],
-[new Date(2014, 11), -.2,  4.5]
-]);
+ var chart = new google.charts.Line(document.getElementById('chart_div'));
 
-var materialOptions = {
-chart: {
-  title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
-},
-width: 900,
-height: 500,
-series: {
-  // Gives each series an axis name that matches the Y-axis below.
-  0: {axis: 'Temps'},
-  1: {axis: 'Daylight'}
-},
-axes: {
-  // Adds labels to each axis; they don't have to match the axis names.
-  y: {
-    Temps: {label: 'Temps (Celsius)'},
-    Daylight: {label: 'Daylight'}
+ chart.draw(data, options);
+}
+
+function createArray(length) {
+    var arr = new Array(length || 0),
+        i = length;
+
+    if (arguments.length > 1) {
+        var args = Array.prototype.slice.call(arguments, 1);
+        wh
+        ile(i--) arr[length-1 - i] = createArray.apply(this, args);
+    }
+
+    return arr;
+}
+
+function isolateCols(xCol, yCol, dataArr) {
+  var dataArray = createArray(dataArr.length, 2)
+  for (i = 0; i < dataArr.length; i++) {
+    dataArray[i][0] = dataArr[i][xCol];
+      dataArray[i][1] = dataArr[i][yCol];
   }
+  return dataArray;
 }
-};
 
-var classicOptions = {
-title: 'Average Temperatures and Daylight in Iceland Throughout the Year',
-width: 900,
-height: 500,
-// Gives each series an axis that matches the vAxes number below.
-series: {
-  0: {targetAxisIndex: 0},
-  1: {targetAxisIndex: 1}
-},
-vAxes: {
-  // Adds titles to each axis.
-  0: {title: 'Temps (Celsius)'},
-  1: {title: 'Daylight'}
-},
-hAxis: {
-  ticks: [new Date(2014, 0), new Date(2014, 1), new Date(2014, 2), new Date(2014, 3),
-          new Date(2014, 4),  new Date(2014, 5), new Date(2014, 6), new Date(2014, 7),
-          new Date(2014, 8), new Date(2014, 9), new Date(2014, 10), new Date(2014, 11)
-         ]
-},
-vAxis: {
-  viewWindow: {
-    max: 30
+function findTimeOffset(timeLengthValue) {
+  var offset = 0;
+  var hourOffset = 3600000;
+  switch(timeLengthValue) {
+    case 1:
+    offset = hourOffset * 6;
+    break;
+    case 2:
+    offset = hourOffset * 24;
+    break;
+    case 3:
+    offset = hourOffset * 24*3;
+    break;
+    case 4:
+    offset = hourOffset * 24*7;
+    break;
+    case 5:
+    offset = hourOffset * 24*14;
+    break;
+    case 6:
+    offset = hourOffset * 24*30;
+    break;
+    case 7:
+    offset = hourOffset * 24*60;
+    break;
   }
-}
-};
 
-function drawMaterialChart() {
-  console.log("test");
-var materialChart = new google.charts.Line(chartDiv);
-materialChart.draw(data, materialOptions);
-button.innerText = 'Change to Classic1';
-button.onclick = drawClassicChart;
-}
-
-function drawClassicChart() {
-var classicChart = new google.visualization.LineChart(chartDiv);
-classicChart.draw(data, classicOptions);
-button.innerText = 'Change to Material';
-button.onclick = drawMaterialChart;
-}
-
-drawMaterialChart();
-}
-
-function drawData() {
+  function drawData() {
     console.log("test");
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "http://localhost:8080/data", false);
     xhttp.send();
     var response = JSON.parse(xhttp.responseText);
 }
-
-//
-// google.charts.load('current', {'packages':['line', 'corechart']});
-// google.charts.setOnLoadCallback(drawChart(true));
-//
-// function drawChart(isDual) {
-//
-// var button = document.getElementById('render-chart');
-// var chartDiv = document.getElementById('chart_div');
-//
-// if(isDual) {
-// var data = new google.visualization.DataTable();
-// data.addColumn('date', 'Month');
-// data.addColumn('number', "Average Temperature");
-// data.addColumn('number', "Average Hours of Daylight");
-//
-// data.addRows([
-//   [new Date(2014, 0),  -.5,  5.7],
-//   [new Date(2014, 1),   .4,  8.7],
-//   [new Date(2014, 2),   .5,   12],
-//   [new Date(2014, 3),  2.9, 15.3],
-//   [new Date(2014, 4),  6.3, 18.6],
-//   [new Date(2014, 5),    9, 20.9],
-//   [new Date(2014, 6), 10.6, 19.8],
-//   [new Date(2014, 7), 10.3, 16.6],
-//   [new Date(2014, 8),  7.4, 13.3],
-//   [new Date(2014, 9),  4.4,  9.9],
-//   [new Date(2014, 10), 1.1,  6.6],
-//   [new Date(2014, 11), -.2,  4.5]
-// ]);
-//
-// var materialOptions = {
-//   chart: {
-//     title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
-//   },
-//   width: 900,
-//   height: 500,
-//   series: {
-//     // Gives each series an axis name that matches the Y-axis below.
-//     0: {axis: 'Temps'},
-//     1: {axis: 'Daylight'}
-//   },
-//   axes: {
-//     // Adds labels to each axis; they don't have to match the axis names.
-//     y: {
-//       Temps: {label: 'Temps (Celsius)'},
-//       Daylight: {label: 'Daylight'}
-//     }
-//   }
-// };
-// } else {
-// var data = new google.visualization.DataTable();
-// data.addColumn('date', 'Month');
-// data.addColumn('number', "Average Temperature");
-// data.addColumn('number', "Average Hours of Daylight");
-//
-// data.addRows([
-//   [new Date(2014, 0),  -.5,  5.7],
-//   [new Date(2014, 1),   .4,  8.7],
-//   [new Date(2014, 2),   .5,   12],
-//   [new Date(2014, 3),  2.9, 15.3],
-//   [new Date(2014, 4),  6.3, 18.6],
-//   [new Date(2014, 5),    9, 20.9],
-//   [new Date(2014, 6), 10.6, 19.8],
-//   [new Date(2014, 7), 10.3, 16.6],
-//   [new Date(2014, 8),  7.4, 13.3],
-//   [new Date(2014, 10), 1.1,  6.6],
-//   [new Date(2014, 11), -.2,  4.5]
-// ]);
-//
-// var materialOptions = {
-//   chart: {
-//     title: 'Average Temperatures and Daylight in Iceland Throughout the Year'
-//   },
-//   width: 900,
-//   height: 500,
-//   series: {
-//     // Gives each series an axis name that matches the Y-axis below.
-//     0: {axis: 'Temps'},
-//     1: {axis: 'Daylight'}
-//   },
-//   axes: {
-//     // Adds labels to each axis; they don't have to match the axis names.
-//     y: {
-//       Temps: {label: 'Temps (Celsius)'},
-//       Daylight: {label: 'Daylight'}
-//     }
-//   }
-// };
-// }
-//
-//
-// function drawMaterialChart() {
-//   var materialChart = new google.charts.Line(chartDiv);
-//   materialChart.draw(data, materialOptions);
-//   button.innerText = 'Change to Classic';
-//   button.onclick = drawClassicChart;
-// }
-//
-// drawMaterialChart();
-//
-// }
+}
