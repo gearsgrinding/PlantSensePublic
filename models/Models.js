@@ -17,7 +17,8 @@ var hypothesisSchema = new schema({
 	hypothesis: {type : String},
   dataX: {type : String},
   dataY: {type : String},
-  corelation: {type:String}
+  corelation: {type:String},
+  terminated: {type: Boolean}
 });
 
 var dataSchema = new schema({
@@ -26,6 +27,7 @@ var dataSchema = new schema({
   unit: {type : String},
   measure: {type : Number}
 });
+
 
 hypothesisSchema.statics = {
      /**

@@ -14,7 +14,14 @@ module.exports = function(app, passport) {
       res.sendfile(path.resolve('views/test.ejs'));
     });
     app.get('/data.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/data.ejs'));
+        dataSchema.find(function(err, hypothesis) {
+            if (err)
+                res.send(err);
+
+                var recents = hypothesis;
+                res.render(path.resolve('views/data.ejs'));
+        })
+      
     });
     app.get('/home.ejs',function(req, res) {
       res.sendfile(path.resolve('views/home.ejs'));
@@ -134,6 +141,7 @@ module.exports = function(app, passport) {
         hypothesisTemp.dataX = req.body.dataX;
         hypothesisTemp.dataY = req.body.dataY;
         hypothesisTemp.corleation = req.body.corelation;
+        hypothesisTemp.terminated = true;
 
         hypothesisTemp.save(function(err) {
             if (err)
