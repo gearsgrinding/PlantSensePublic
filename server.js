@@ -19,6 +19,7 @@ app.use(session({ secret: 'ilovescotchscotchyscotchscotch' })); // session secre
 app.use(passport.initialize());
 app.use(passport.session()); // persistent login sessions
 app.use(flash());
+app.set('view engine', 'ejs');  
 
 
 mongoose.connect('mongodb://localhost/test');

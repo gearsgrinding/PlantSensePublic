@@ -20,8 +20,17 @@ module.exports = function(app, passport) {
       res.sendfile(path.resolve('views/home.ejs'));
     });
      app.get('/history.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/history.ejs'));
+        hypothesisSchema.find(function(err, hypothesis) {
+            if (err)
+                res.send(err);
+
+                var experiments = hypothesis;
+                console.log(experiments);
+                res.render(path.resolve('views/history.ejs'),{experiments: experiments});
+        })
+      
     });
+      
       app.get('/current.ejs',function(req, res) {
       res.sendfile(path.resolve('views/current.ejs'));
     });
@@ -142,7 +151,7 @@ module.exports = function(app, passport) {
 
                 res.json(hypothesis);
         })
-         res.redirect('/');
+        // res.redirect('/');
     });
 
     app.get('hypothesis/:id', function(req, res) {
