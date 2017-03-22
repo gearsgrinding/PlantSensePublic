@@ -15,12 +15,11 @@ module.exports = function(app, passport) {
       res.sendfile(path.resolve('views/test.ejs'));
   });
     app.get('/data.ejs',function(req, res) {
-        dataSchema.find(function(err, hypothesis) {
+        dataSchema.find(function(err, data) {
             if (err)
                 res.send(err);
 
-            var recents = hypothesis;
-            res.render(path.resolve('views/data.ejs'));
+            res.render(path.resolve('views/data.ejs'),{data:data});
         })
 
     });
