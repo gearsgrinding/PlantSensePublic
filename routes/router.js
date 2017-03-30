@@ -287,6 +287,19 @@ app.get('/dataAfter',function(req, res, next) {
 });
 
 });
+
+app.get('finish/:id', function(req, res) {
+    hypothesisSchema.get({_id: req.params.id}, function(err, result) {
+        if (!err) {
+            return res.json(result);
+        } else {
+                result.terminated = true;
+                result.endTime = Date.now;
+            }
+        });
+});
+
+
 };
 
 
