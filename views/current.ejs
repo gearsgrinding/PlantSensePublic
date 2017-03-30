@@ -14,9 +14,8 @@
   </script>
   </head>
   <body>
-    <div class="container">
-      <h1>New Experiment</h1>
-
+    <h1>New Experiment</h1>
+      <div class="container">
       <form class="form-inline" action="/hypothesis" method="post">
           <div class="form-group">
            <label for="hypothesis">Hypothesis:</label>
@@ -52,36 +51,34 @@
         <button type="submit" class="btn btn-default">Create Experiment</button>
       </form>
     </div>
-
-    <h1>Current Experiments</h1>
-    <ul>
-      <% experiments.forEach(function(experiment) { %>
-        <li>
-          <input type="checkbox" checked>
-          <i></i>
-          <h2>Hypothesis: <%= experiment.hypothesis %></h2>
-          <div>
-            Started: <%= experiment.startTime %>
-            <br>
-
-            End Experiment:
-            <form class="form-inline" action="/endexperiment" method="post">
-              Conclusion:
-              <div class="col-10">
-                <input class="form-control" type="text" value="What did you learn?" id="concluding-text">
-              </div>
-              Overall, we found data
-              <select class="form-control" name="correlation">
-                <option>did support</option>
-                <option>did not support</option>
-              </select>
-              the hypothesis.
-
-              <button id="finishButton">Finish Experiment</button>
-            </form>
-          </div>
-        </li>
-        <% }); %>
-    </ul>
+      <h1>Current Experiments</h1>
+      <ul>
+        <% experiments.forEach(function(experiment) { %>
+          <li>
+            <input type="checkbox" checked>
+            <i></i>
+            <h2>Hypothesis: <%= experiment.hypothesis %></h2>
+            <div>
+              Started: <%= experiment.startTime %>
+              <br>
+              <br>
+              <h3>End Experiment:</h3>
+              <form class="form-inline" action="/endexperiment" method="post">
+                Conclusion:
+                <input class="form-control" type="text" placeholder="What did you learn?" id="concluding-text">
+                <br>
+                Overall, we found data
+                <select class="form-control" name="correlation">
+                  <option>did support</option>
+                  <option>did not support</option>
+                </select>
+                the hypothesis.
+                <br>
+                <button id="finishButton">Finish Experiment</button>
+              </form>
+            </div>
+          </li>
+          <% }); %>
+      </ul>
 </body>
 </html>

@@ -58,10 +58,11 @@ body {
   left: 50%;
   margin: 90px 0;
   transform: translate(-50%, 0);
-  box-shadow: 0 10px 0 0 #ff6873 inset;
+  box-shadow: 0 10px 0 0 #96C892 inset;
   background-color: #fefffa;
   width: 800px;
   padding: 30px;
+  min-height: 100%;
 }
 @media (max-width: 550px) {
   body {
@@ -71,11 +72,12 @@ body {
     min-height: 100%;
     margin: 0;
     left: 0;
+    background-color: #fefffa;
   }
 }
 
 h1, h2 {
-  color: #ff6873;
+  color: #96C892;
 }
 
 h1 {
@@ -104,7 +106,7 @@ div {
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
-  max-height: 800px;
+  /*max-height: 800px;*/
   opacity: 1;
   transform: translate(0, 0);
   margin-top: 14px;
@@ -146,7 +148,7 @@ ul li i {
 ul li i:before, ul li i:after {
   content: "";
   position: absolute;
-  background-color: #ff6873;
+  background-color: #96C892;
   width: 3px;
   height: 9px;
 }
