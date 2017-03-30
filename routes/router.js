@@ -39,7 +39,15 @@ module.exports = function(app, passport) {
     });
 
     app.get('/current.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/current.ejs'));
+       hypothesisSchema.find(function(err, hypothesis) {
+            if (err)
+                res.send(err);
+
+            var experiments = hypothesis;
+            console.log(experiments);
+            res.render(path.resolve('views/current.ejs'),{experiments: experiments});
+        })
+     
   });
 
     app.get('/login', function(req, res) {

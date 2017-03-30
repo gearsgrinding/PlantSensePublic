@@ -18,7 +18,9 @@ var hypothesisSchema = new schema({
   dataX: {type : String},
   dataY: {type : String},
   corelation: {type:String},
-  terminated: {type: Boolean}
+  terminated: {type: Boolean},
+  startTime: { type: Date, default: Date.now },
+  endTime: { type: Date}
 });
 
 var dataSchema = new schema({
