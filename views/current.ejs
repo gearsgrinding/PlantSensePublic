@@ -14,9 +14,8 @@
   </script>
   </head>
   <body>
-    <div class="container">
-      <h1>New Experiment</h1>
-
+    <h1>New Experiment</h1>
+      <div class="container">
       <form class="form-inline" action="/hypothesis" method="post">
           <div class="form-group">
            <label for="hypothesis">Hypothesis:</label>
@@ -53,6 +52,7 @@
       </form>
     </div>
 
+
     <h1>Current Experiments</h1>
     <ul>
       <% experiments.forEach(function(experiment) { %>
@@ -85,5 +85,6 @@
         </li>
         <% }); %>
     </ul>
+
 </body>
 </html>
