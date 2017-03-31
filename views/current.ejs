@@ -8,9 +8,9 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript-lazy">
-  document.getElementById('finishButton').addEventListener('click', function() {
-    console.log('test');
-  }, false);
+  function testFunction(testValue){
+    console.log(testValue);
+  };
   </script>
   </head>
   <body>
@@ -65,7 +65,7 @@
             <br>
 
             End Experiment:
-            <form class="form-inline" action="/endexperiment" method="post">
+            <form class="form-inline" >
               Conclusion:
               <div class="col-10">
                 <input class="form-control" type="text" value="What did you learn?" id="concluding-text">
@@ -76,19 +76,14 @@
                 <option>did not support</option>
               </select>
               the hypothesis.
-<<<<<<< HEAD
-              <button id="finishButton">Finish Experiment</button>
-=======
-              <button type="submit" class="btn btn-default">Finish Experiment</button>
+              <input class="form-control" type="text" value=<%= experiment.id %> name="testText">
+              <button id="finishButton" onclick="testFunction(this.form.testText.value)">Finish Experiment</button>
+
             </form>
->>>>>>> 4b78f8dd2c981243205213413bee92e31b82fdd4
+
           </div>
         </li>
         <% }); %>
     </ul>
-<<<<<<< HEAD
-
-=======
->>>>>>> 4b78f8dd2c981243205213413bee92e31b82fdd4
 </body>
 </html>
