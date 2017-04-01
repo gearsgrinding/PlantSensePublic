@@ -5,18 +5,23 @@
   <body>
 
 
-<h1>Past Experiments</h1>
+<h1>Finished Experiments</h1>
 <ul>
   <% experiments.forEach(function(experiment) { %>
-    <li>
-      <input type="checkbox" checked>
-      <i></i>
-      <h2>Hypothesis: <%= experiment.hypothesis %></h2>
-      <div>
-        <%= experiment.startTime %>
-      </div>
-    </li>
-    <% }); %>
+  <%if (experiment.terminated) { %>
+
+  <li>
+    <input type="checkbox" checked>
+    <i></i>
+    <h2>Hypothesis: <%= experiment.hypothesis %></h2>
+    <div>
+      Started: <%= experiment.startTime %>
+      <br>
+      Ended: <%= experiment.endTime %>
+    </div>
+  </li>
+  <% } %>
+  <% }); %>
 </ul>
 
 </body>

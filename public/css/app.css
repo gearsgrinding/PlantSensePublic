@@ -178,6 +178,9 @@ ul li input[type=checkbox]:checked ~ i:before {
 ul li input[type=checkbox]:checked ~ i:after {
   transform: translate(-2px, 0) rotate(-45deg);
 }
+invisible {
+    visibility: hidden;
+}
 
 @keyframes flipdown {
   0% {

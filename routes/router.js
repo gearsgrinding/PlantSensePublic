@@ -32,7 +32,6 @@ module.exports = function(app, passport) {
                 res.send(err);
 
             var experiments = hypothesis;
-            console.log(experiments);
             res.render(path.resolve('views/history.ejs'),{experiments: experiments});
         })
 
@@ -44,7 +43,6 @@ module.exports = function(app, passport) {
                 res.send(err);
 
             var experiments = hypothesis;
-            console.log(experiments);
             res.render(path.resolve('views/current.ejs'),{experiments: experiments});
         })
      
@@ -178,7 +176,7 @@ app.post('/hypothesis',function(req, res, next) {
     hypothesisTemp.dataX = req.body.dataX;
     hypothesisTemp.dataY = req.body.dataY;
     hypothesisTemp.corleation = req.body.corelation;
-    hypothesisTemp.terminated = true;
+    hypothesisTemp.terminated = false;
 
     hypothesisTemp.save(function(err) {
         if (err)
@@ -232,7 +230,6 @@ app.delete('hypothesis/:id', function(req, res) {
 
 app.post('/data',function(req, res, next) {
     var data = new dataSchema();
-    console.log(req.body);
     data.field = req.body.field;
     data.unit = req.body.unit;
     data.measure = req.body.measure;
@@ -288,13 +285,19 @@ app.get('/dataAfter',function(req, res, next) {
 
 });
 
-app.get('finish/:id', function(req, res) {
-    hypothesisSchema.get({_id: req.params.id}, function(err, result) {
+app.put('/finish/:id', function(req, res) {
+
+    req.body.terminated = true;
+    req.body.endTime  = Date.now();   
+            console.log("success1");
+    hypothesisSchema.update({_id: req.params.id}, req.body,{upsert:true}, function(err, result) {
+    console.log(err);
         if (!err) {
             return res.json(result);
+            console.log("success3");
         } else {
-                result.terminated = true;
-                result.endTime = Date.now;
+                return res.send(err); // 500 error
+
             }
         });
 });
