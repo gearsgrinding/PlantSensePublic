@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html>
-  <head>
+<head>
   <title>Bootstrap Example</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,77 +8,90 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript-lazy">
-  document.getElementById('finishButton').addEventListener('click', function() {
-    console.log('test');
-  }, false);
+  function testFunction(testValue){
+    console.log("http://localhost:8080/finish/"+testValue);
+    var xhttp = new XMLHttpRequest();
+    xhttp.open("PUT", "http://localhost:8080/finish/"+testValue, false);
+    xhttp.send();
+    var response = JSON.parse(xhttp.responseText);
+    location.reload();
+  };
   </script>
-  </head>
-  <body>
-    <h1>New Experiment</h1>
-      <div class="container">
-      <form class="form-inline" action="/hypothesis" method="post">
-          <div class="form-group">
-           <label for="hypothesis">Hypothesis:</label>
-           <input type="text" class="form-control" name="hypothesis">
-         </div>
-         <br>
-         <div class="form-group">
-           (optional)
-          <select class="form-control" name="dataX">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-          and
-          <select class="form-control" name="dataY">
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
-          </select>
-          are
-          <select class="form-control" name="correlation">
-            <option>positively</option>
-            <option>negatively</option>
-            <option>not</option>
-          </select>
-          correlated.
-          <br>
-        </div>
-        <br>
-        <br>
-        <button type="submit" class="btn btn-default">Create Experiment</button>
-      </form>
+</head>
+<body>
+  <h1>New Experiment</h1>
+  <div class="container">
+    <form class="form-inline" action="/hypothesis" method="post">
+      <div class="form-group">
+       <label for="hypothesis">Hypothesis:</label>
+       <input type="text" class="form-control" name="hypothesis">
+     </div>
+     <br>
+     <div class="form-group">
+       (optional)
+       <select class="form-control" name="dataX">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      and
+      <select class="form-control" name="dataY">
+        <option>1</option>
+        <option>2</option>
+        <option>3</option>
+        <option>4</option>
+      </select>
+      are
+      <select class="form-control" name="corelation">
+        <option>positively</option>
+        <option>negatively</option>
+        <option>not</option>
+      </select>
+      correlated.
+      <br>
     </div>
-      <h1>Current Experiments</h1>
-      <ul>
-        <% experiments.forEach(function(experiment) { %>
-          <li>
-            <input type="checkbox" checked>
-            <i></i>
-            <h2>Hypothesis: <%= experiment.hypothesis %></h2>
-            <div>
-              Started: <%= experiment.startTime %>
-              <br>
-              <br>
-              <h3>End Experiment:</h3>
-              <form class="form-inline" action="/endexperiment" method="post">
-                Conclusion:
-                <input class="form-control" type="text" placeholder="What did you learn?" id="concludingText">
-                <br>
-                Overall, we found data
-                <select class="form-control" id="conclusion">
-                  <option>did support</option>
-                  <option>did not support</option>
-                </select>
-                the hypothesis.
-                <br>
-                <button id="finishButton">Finish Experiment</button>
-              </form>
-            </div>
-          </li>
-          <% }); %>
-      </ul>
+    <br>
+    <br>
+    <button type="submit" class="btn btn-default">Create Experiment</button>
+  </form>
+</div>
+
+
+<h1>Current Experiments</h1>
+<ul>
+  <% experiments.forEach(function(experiment) { %>
+  <%if (!experiment.terminated) { %>
+
+  <li>
+    <input type="checkbox" checked>
+    <i></i>
+    <h2>Hypothesis: <%= experiment.hypothesis %></h2>
+    <div>
+      Started: <%= experiment.startTime %>
+      <br>
+
+      End Experiment:
+      <form class="form-inline" >
+        Conclusion:
+        <div class="col-10">
+          <input class="form-control" type="text" value="What did you learn?" id="concluding-text">
+        </div>
+        Overall, we found data
+        <select class="form-control" name="correlation">
+          <option>did support</option>
+          <option>did not support</option>
+        </select>
+        the hypothesis.
+        <input class="invisible" type="text" value=<%= experiment.id %> name="testText">
+        <button id="finishButton" onclick="testFunction(this.form.testText.value)">Finish Experiment</button>
+
+      </form>
+
+    </div>
+  </li>
+  <% } %>
+  <% }); %>
+</ul>
 </body>
 </html>
