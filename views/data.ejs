@@ -92,7 +92,7 @@
 
   </div>
   <br>
-  <input  type="text" value=<%= data %> name="testText"> 
+  <input  type="text" value=<%= data %> name="testText">
   <dataPart class = "invisible">
     <%= data %>
   </dataPart>
@@ -113,30 +113,30 @@
     <table class="table">
       <thead>
         <tr>
-          <th>#</th>
-          <th>Firstname</th>
-          <th>Lastname</th>
-          <th>Age</th>
-          <th>City</th>
-          <th>Country</th>
+          <th>Time</th>
+          <th>Temperature</th>
+          <th>Light</th>
+          <th>pH</th>
         </tr>
       </thead>
       <tbody>
-        <% data.forEach(function(entry){ %>
+        <% var index = Math.min(20, data.length); %>
+        <% for(var i = 0; i < index; i++) { %>
         <tr>
           <td>
-            <%= entry %>
+            <%= data[i].date %>
+          </td>
+          <td>
+            <%= data[i].temp %>
+          </td>
+          <td>
+            <%= data[i].light %>
+          </td>
+          <td>
+            <%= data[i].pH %>
           </td>
         </tr>
-        <% }); %>
-        <!-- <tr>
-          <td>1</td>
-          <td>Anna</td>
-          <td>Pitt</td>
-          <td>35</td>
-          <td>New York</td>
-          <td>USA</td>
-        </tr> -->
+        <% } %>
       </tbody>
     </table>
     <p>
