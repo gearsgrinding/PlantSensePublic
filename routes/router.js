@@ -231,9 +231,10 @@ app.delete('hypothesis/:id', function(req, res) {
 
 app.post('/data',function(req, res, next) {
     var data = new dataSchema();
-    data.field = req.body.field;
-    data.unit = req.body.unit;
-    data.measure = req.body.measure;
+    data.date = req.body.date;
+    data.pH = req.body.pH;
+    data.light = req.body.light;
+    data.temp = req.body.temp;
 
     data.save(function(err) {
         if (err)
