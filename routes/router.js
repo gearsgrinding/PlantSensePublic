@@ -289,12 +289,9 @@ app.put('/finish/:id', function(req, res) {
 
     req.body.terminated = true;
     req.body.endTime  = Date.now();   
-            console.log("success1");
     hypothesisSchema.update({_id: req.params.id}, req.body,{upsert:true}, function(err, result) {
-    console.log(err);
         if (!err) {
             return res.json(result);
-            console.log("success3");
         } else {
                 return res.send(err); // 500 error
 
