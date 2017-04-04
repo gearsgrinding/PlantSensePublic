@@ -13,7 +13,14 @@
       <i></i>
       <h2>Hypothesis: <%= experiment.hypothesis %></h2>
       <div>
-        <%= experiment.startTime %>
+        Started: <%= experiment.startTime %>
+        <br>
+        Ended: <%= experiment.endTime %>
+        <br>
+        Expected: <%= experiment.dataX %> <%= experiment.correlation %> correlated with <%= experiment.dataY %>
+        <br>
+        Conclusion: Data did <%= experiment.conclusion %> the hypothesis. <%= experiment.concludingText %>
+        <br>
       </div>
     </li>
     <% }); %>

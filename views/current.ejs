@@ -38,7 +38,7 @@
             <option>4</option>
           </select>
           are
-          <select class="form-control" name="corelation">
+          <select class="form-control" name="correlation">
             <option>positively</option>
             <option>negatively</option>
             <option>not</option>
@@ -65,10 +65,10 @@
               <h3>End Experiment:</h3>
               <form class="form-inline" action="/endexperiment" method="post">
                 Conclusion:
-                <input class="form-control" type="text" placeholder="What did you learn?" id="concluding-text">
+                <input class="form-control" type="text" placeholder="What did you learn?" id="concludingText">
                 <br>
                 Overall, we found data
-                <select class="form-control" name="correlation">
+                <select class="form-control" id="conclusion">
                   <option>did support</option>
                   <option>did not support</option>
                 </select>

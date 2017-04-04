@@ -17,10 +17,12 @@ var hypothesisSchema = new schema({
 	hypothesis: {type : String},
   dataX: {type : String},
   dataY: {type : String},
-  corelation: {type:String},
+  correlation: {type:String},
   terminated: {type: Boolean},
   startTime: { type: Date, default: Date.now },
-  endTime: { type: Date}
+  endTime: { type: Date},
+	conclusion: {type: String},
+	concludingText: {type: String}
 });
 
 var dataSchema = new schema({
@@ -47,7 +49,7 @@ hypothesisSchema.statics = {
     getAll: function(query, callback) {
         this.find(query, callback);
     },
-    
+
     /**
       updatecompany. return the create company object result.
       @param updateData: updateData is use to update company w.r.t id.
@@ -80,7 +82,7 @@ dataSchema.statics = {
     getAll: function(query, callback) {
         this.find(query, callback);
     },
-    
+
     /**
       updatecompany. return the create company object result.
       @param updateData: updateData is use to update company w.r.t id.
