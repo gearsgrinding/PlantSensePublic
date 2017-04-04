@@ -177,6 +177,7 @@ app.post('/hypothesis',function(req, res, next) {
     hypothesisTemp.dataY = req.body.dataY;
     hypothesisTemp.corleation = req.body.corelation;
     hypothesisTemp.terminated = false;
+    hypothesisTemp.startTime = new Date();
 
     hypothesisTemp.save(function(err) {
         if (err)
@@ -184,7 +185,6 @@ app.post('/hypothesis',function(req, res, next) {
 
         res.json("post");
     })
-    res.redirect('/');
 });
 
 app.get('/hypothesis',function(req, res, next) {
