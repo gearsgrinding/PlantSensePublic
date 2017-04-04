@@ -185,6 +185,7 @@ app.post('/hypothesis',function(req, res, next) {
 
         res.json("post");
     })
+    res.redirect('/');
 });
 
 app.get('/hypothesis',function(req, res, next) {
