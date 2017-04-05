@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <script type="text/javascript-lazy" src = "/graphs.js"></script>
+
   <script type="text/javascript-lazy">
   $("dataPart").hide();
   </script>
@@ -49,7 +49,7 @@
   <dataPart class = "invisible">
     <%= data %>
   </dataPart>
-  <button id="render-chart" onclick="buttonClickDraw()">Render Graph</button>
+  <button id="render-chart" onclick="buttonClickDraw(this.form.stringX.value,this.form.stringY.value,this.form.timeSpan.value)">Render Graph</button>
   <button id="render-chart" onclick="testFunction(<%= data %>)">testFunction</button>
 </form>
 
