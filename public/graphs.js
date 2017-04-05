@@ -1,9 +1,21 @@
 google.charts.load('current', {'packages':['line']});
+<<<<<<< HEAD
+=======
+var xChoice = document.getElementById("stringX");
+var yChoice = document.getElementById("stringY");
+var formTime = document.getElementById("timeSpan")
+>>>>>>> cb01dbfc85c15aa7671c4382595224f7f259d7fb
 
 document.getElementById('render_chart').addEventListener("click",buttonClickDraw);
 google.charts.setOnLoadCallback(buttonClickDraw);
 
+<<<<<<< HEAD
 function buttonClickDraw(strX,strY,formTime) {
+=======
+function buttonClickDraw() {
+   var strX = xChoice.options[xChoice.selectedIndex].text;
+   var strY = yChoice.options[yChoice.selectedIndex].text;
+>>>>>>> cb01dbfc85c15aa7671c4382595224f7f259d7fb
    drawChart(strX, strY, formTime);
 }
 
@@ -38,7 +50,11 @@ switch (y) {
   break;
 }
 
+<<<<<<< HEAD
 data.addRows(dataTest(x, y, formTime));
+=======
+data.addRows(dataTest(x, y, formTime)));
+>>>>>>> cb01dbfc85c15aa7671c4382595224f7f259d7fb
 
 var options = {
  chart: {
@@ -73,6 +89,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
     }
   }
   var dataArray = createArray(count, 2);
+
   var index = 0;
   for (i = 0; i < dataArr.length; i++) {
     if(dataArr[i].date >= startTime && dataArr[i].date <= endTime) {
