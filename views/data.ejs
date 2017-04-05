@@ -1,53 +1,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-  <script type="text/javascript-lazy">
-  function dataTest(data,formTime,nameX,nameY){
-
-    var durationInMinutes = 0;
-    switch(formTime) {
-      case "1":
-      durationInMinutes = 6*60;
-      break;
-      case "2":
-      durationInMinutes = 24*60;
-      break;
-      case "3":
-      durationInMinutes = 24*3*60;
-      break;
-      case "4":
-      durationInMinutes = 24*7*60;
-      break;
-      case "5":
-      durationInMinutes = 24*7*2*60;
-      break;
-      case "6":
-      durationInMinutes = 24*30*60;
-      break;
-      case "7":
-      durationInMinutes = 24*30*2*60;
-      break;
-    }
-    var MS_PER_MINUTE = 60000;
-    var date = new Date();
-    var myStartDate = (date - durationInMinutes * MS_PER_MINUTE);
-    var url = "http://localhost:8080/data";
-    var dataTry = httpGet(url);
-    console.log(JSON.parse(dataTry));
-    var dataSort = [[nameX,nameY]];
-
-  };
-
-
-  function httpGet(theUrl)
-  {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open( "GET", theUrl, false ); // false for synchronous request
-    xmlHttp.send( null );
-    return xmlHttp.responseText;
-  }
-  </script>
   <script type="text/javascript-lazy" src = "/graphs.js"></script>
   <script type="text/javascript-lazy">
   $("dataPart").hide();
@@ -96,7 +49,7 @@
   <dataPart class = "invisible">
     <%= data %>
   </dataPart>
-  <button id="render-chart" onclick="dataTest($('dataPart').text(),this.form.timeSpan.value,this.form.stringY.value,this.form.stringX.value)">Render Graph</button>
+  <button id="render-chart" onclick="buttonClickDraw()">Render Graph</button>
   <button id="render-chart" onclick="testFunction(<%= data %>)">testFunction</button>
 </form>
 
