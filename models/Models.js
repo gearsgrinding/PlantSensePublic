@@ -28,8 +28,8 @@ var hypothesisSchema = new schema({
 var dataSchema = new schema({
   date: { type: Date, default: Date.now },
   pH: {type : Number},
-  Light: {type : Number},
-  Temp: {type : Number}
+  light: {type : Number},
+  temp: {type : Number}
 });
 
 
