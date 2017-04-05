@@ -1,14 +1,12 @@
 google.charts.load('current', {'packages':['line']});
 
-document.getElementById('render_chart').addEventListener("click",buttonClickDraw);
-google.charts.setOnLoadCallback(buttonClickDraw);
-
-function buttonClickDraw(strX,strY,formTime) {\
+function buttonClickDraw(strX,strY,formTime) {
    drawChart(strX, strY, formTime);
 }
 
 function drawChart(x, y, formTime) {
  var data = new google.visualization.DataTable();
+ console.log(x);
  switch (x) {
   case "Time":
   data.addColumn('number', 'Day');
@@ -23,6 +21,7 @@ function drawChart(x, y, formTime) {
   data.addColumn('number', 'pH');
   break;
 }
+console.log(y);
 switch (y) {
   case "Time":
   data.addColumn('number', 'Day');
@@ -37,7 +36,7 @@ switch (y) {
   data.addColumn('number', 'pH');
   break;
 }
-
+console.log(formTime);
 data.addRows(dataTest(x, y, formTime));
 
 var options = {
@@ -68,10 +67,14 @@ function createArray(length) {
 function filterData(dataArr, endTime, startTime, xCol, yCol) {
   var count = 0;
   for(i = 0; i < dataArr.length; i++){
+    console.log(dataArr[i].date);
+    console.log(startTime);
+    console.log(endTime);
     if(dataArr[i].date >= startTime && dataArr[i].date <= endTime) {
       count++;
     }
   }
+  console.log(count);
   var dataArray = createArray(count, 2);
 
   var index = 0;
@@ -151,7 +154,8 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
     var url = "http://localhost:8080/data";
     var dataTry = httpGet(url);
     console.log(JSON.parse(dataTry));
-    var dataArr = filterData(dataTry, date, myStartDate, xCol, yCol);
+    var dataArr = filterData(JSON.parse(dataTry), date, myStartDate, xCol, yCol);
+    console.log(dataArr);
     return dataArr;
   };
 
