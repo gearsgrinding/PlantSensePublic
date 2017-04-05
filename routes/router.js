@@ -8,7 +8,7 @@ module.exports = function(app, passport) {
     // =====================================
     // HOME PAGE (with login links) ========
     // =====================================
-    app.get('/', function(req, res) {
+    app.get('/', isLoggedIn , function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
     app.get('/test.ejs',function(req, res) {
@@ -38,15 +38,15 @@ module.exports = function(app, passport) {
     });
 
     app.get('/current.ejs',function(req, res) {
-       hypothesisSchema.find(function(err, hypothesis) {
-            if (err)
-                res.send(err);
+     hypothesisSchema.find(function(err, hypothesis) {
+        if (err)
+            res.send(err);
 
-            var experiments = hypothesis;
-            res.render(path.resolve('views/current.ejs'),{experiments: experiments});
-        })
-     
-  });
+        var experiments = hypothesis;
+        res.render(path.resolve('views/current.ejs'),{experiments: experiments});
+    })
+
+ });
 
     app.get('/login', function(req, res) {
         res.render('login.ejs',{ message: req.flash('loginMessage') }); // load the index.ejs file
@@ -58,7 +58,7 @@ module.exports = function(app, passport) {
 
     app.get('/logout', function(req, res) {
         req.logout();
-        res.redirect('/'); // load the single view file (angular will handle the page changes on the front-end)
+        res.redirect('/login'); // load the single view file (angular will handle the page changes on the front-end)
 
     });
 
@@ -112,16 +112,16 @@ app.get('/light',function(req, res) {
       myBoard = new five.Board();
 
       board.on("ready", function() {
-         var val = new five.Sensor({
+       var val = new five.Sensor({
           pin: "A2",
           freq: 250
       });
 
-         board.repl.inject({
-             pot: photoresistor
-         });
+       board.repl.inject({
+           pot: photoresistor
+       });
 
-         photoresistor.on("data", function() {
+       photoresistor.on("data", function() {
           var data = new dataSchema();
           console.log(req.body);
           data.field = "Light";
@@ -135,25 +135,25 @@ app.get('/light',function(req, res) {
         });
 
       });
-         res.json("success");
-         console.log('router in use');
-     });
+       res.json("success");
+       console.log('router in use');
+   });
   });
 });
 
-    app.post('/signup', passport.authenticate('local-signup', {
+app.post('/signup', passport.authenticate('local-signup', {
         successRedirect : '/dashboard', // redirect to the secure profile section
         failureRedirect : '/signup', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
-    app.post('/login', passport.authenticate('local-login', {
-        successRedirect : '/profile', // redirect to the secure profile section
+app.post('/login', passport.authenticate('local-login', {
+        successRedirect : '/', // redirect to the secure profile section
         failureRedirect : '/login', // redirect back to the signup page if there is an error
         failureFlash : true // allow flash messages
     }));
 
-    app.get('/dashboard', function(req, res) {
+app.get('/dashboard',isLoggedIn, function(req, res) {
         res.render('index.ejs'); // load the index.ejs file
     });
 
@@ -189,7 +189,7 @@ app.post('/hypothesis',function(req, res, next) {
 });
 
 app.get('/hypothesis',function(req, res, next) {
- hypothesisSchema.find(function(err, hypothesis) {
+   hypothesisSchema.find(function(err, hypothesis) {
     if (err)
         res.send(err);
 
@@ -245,7 +245,7 @@ app.post('/data',function(req, res, next) {
 });
 
 app.get('/data',function(req, res, next) {
- dataSchema.find(function(err, hypothesis) {
+   dataSchema.find(function(err, hypothesis) {
     if (err)
         res.send(err);
 
@@ -256,10 +256,10 @@ app.get('/data',function(req, res, next) {
 
 
 app.get('/dataBetween',function(req, res, next) {
- var time1 = req.body.time1;
- var time2 = req.body.time2;
+   var time1 = req.body.time1;
+   var time2 = req.body.time2;
 
- dataSchema.find.sort([['date', 'descending']]).all(function (data) {
+   dataSchema.find.sort([['date', 'descending']]).all(function (data) {
 
     for (i=0;i<data.length;i++) {
         if (data[i].date < time1 || data[i]>time2) {
@@ -274,8 +274,8 @@ app.get('/dataBetween',function(req, res, next) {
 
 app.get('/dataAfter',function(req, res, next) {
 
- var time1 = req.body.time1;
- dataSchema.find.sort([['date', 'descending']]).all(function (data) {
+   var time1 = req.body.time1;
+   dataSchema.find.sort([['date', 'descending']]).all(function (data) {
 
     for (i=0;i<data.length;i++) {
         if (data[i].date < time1) {
@@ -312,5 +312,5 @@ function isLoggedIn(req, res, next) {
         return next();
 
     // if they aren't redirect them to the home page
-    res.redirect('/');
+    res.redirect('/login');
 }
