@@ -9,7 +9,7 @@ function drawChart(x, y, formTime) {
  console.log(x);
  switch (x) {
   case "Time":
-  data.addColumn('number', 'Day');
+  data.addColumn('date', 'Day');
   break;
   case "Temperature":
   data.addColumn('number', 'Temperature');
@@ -24,7 +24,7 @@ function drawChart(x, y, formTime) {
 console.log(y);
 switch (y) {
   case "Time":
-  data.addColumn('number', 'Day');
+  data.addColumn('date', 'Day');
   break;
   case "Temperature":
   data.addColumn('number', 'Temperature');
@@ -67,10 +67,8 @@ function createArray(length) {
 function filterData(dataArr, endTime, startTime, xCol, yCol) {
   var count = 0;
   for(i = 0; i < dataArr.length; i++){
-    console.log(dataArr[i].date);
-    console.log(startTime);
-    console.log(endTime);
-    if(dataArr[i].date >= startTime && dataArr[i].date <= endTime) {
+    var newDate = new Date(dataArr[i].date);
+    if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
       count++;
     }
   }
@@ -79,24 +77,26 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
 
   var index = 0;
   for (i = 0; i < dataArr.length; i++) {
-    if(dataArr[i].date >= startTime && dataArr[i].date <= endTime) {
+  var newDate = new Date(dataArr[i].date);
+  if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
       switch(xCol) {
         case "Time":
-        dataArray[index][0] = dataArr[i].date;
+        dataArray[index][0] = newDate;
         break;
         case "Temperature":
         dataArray[index][0] = dataArr[i].temp;
+        console.log(dataArr[i].temp);
         break;
         case "Light":
         dataArray[index][0] = dataArr[i].light;
         break;
         case "pH":
-        dataArray[index][0] = dataArr[i].ph;
+        dataArray[index][0] = dataArr[i].pH;
         break;
       }
       switch(yCol) {
         case "Time":
-        dataArray[index][1] = dataArr[i].date;
+        dataArray[index][1] = newDate;
         break;
         case "Temperature":
         dataArray[index][1] = dataArr[i].temp;
@@ -105,7 +105,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
         dataArray[index][1] = dataArr[i].light;
         break;
         case "pH":
-        dataArray[index][1] = dataArr[i].ph;
+        dataArray[index][1] = dataArr[i].pH;
         break;
       }
       index++;
@@ -154,7 +154,8 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
     var url = "http://localhost:8080/data";
     var dataTry = httpGet(url);
     console.log(JSON.parse(dataTry));
-    var dataArr = filterData(JSON.parse(dataTry), date, myStartDate, xCol, yCol);
+    var startDate = new Date(myStartDate);
+    var dataArr = filterData(JSON.parse(dataTry), date, startDate, xCol, yCol);
     console.log(dataArr);
     return dataArr;
   };
