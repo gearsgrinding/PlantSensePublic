@@ -60,7 +60,7 @@ body {
   transform: translate(-50%, 0);
   box-shadow: 0 10px 0 0 #96C892 inset;
   background-color: #fefffa;
-  width: 800px;
+  width: 1000px;
   padding: 30px;
   min-height: 100%;
 }
@@ -209,4 +209,6 @@ ul li input[type=checkbox]:checked ~ i:after {
     transform-origin: top center;
     transform: rotateX(0deg);
   }
+
+
 }

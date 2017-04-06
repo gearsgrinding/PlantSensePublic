@@ -63,7 +63,7 @@
 <div class="container">
   <h2>Recent Data Values</h2>
   <div class="table-responsive">
-    <table class="table">
+    <table style"width:30%;" class="table">
       <thead>
         <tr>
           <th>Time</th>
@@ -76,16 +76,16 @@
         <% var index = Math.min(20, data.length); %>
         <% for(var i = 0; i < index; i++) { %>
         <tr>
-          <td>
-            <%= data[i].date %>
+          <td style="width:10%">
+            <%= (new Date(data[i].date)).toUTCString() %>
           </td>
-          <td>
+          <td style="width:5%">
             <%= data[i].temp %>
           </td>
-          <td>
+          <td style="width:5%">
             <%= data[i].light %>
           </td>
-          <td>
+          <td style="width:10%">
             <%= data[i].pH %>
           </td>
         </tr>
