@@ -24,7 +24,12 @@ module.exports = function(app, passport) {
 
     });
     app.get('/home.ejs',function(req, res) {
-      res.sendfile(path.resolve('views/home.ejs'));
+      dataSchema.find(function(err, data) {
+            if (err)
+                res.send(err);
+
+            res.render(path.resolve('views/home.ejs'),{data:data});
+        })
   });
     app.get('/history.ejs',function(req, res) {
         hypothesisSchema.find(function(err, hypothesis) {

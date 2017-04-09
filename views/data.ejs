@@ -45,11 +45,9 @@
 
   </div>
   <br>
-  <input  type="text" value=<%= data %> name="testText">
-  <dataPart class = "invisible">
-    <%= data %>
-  </dataPart>
+
   <button id="render-chart" onclick="buttonClickDraw(this.form.stringX.value,this.form.stringY.value,this.form.timeSpan.value)">Render Graph</button>
+
   <button id="render-chart" onclick="testFunction(<%= data %>)">testFunction</button>
 </form>
 
@@ -57,13 +55,13 @@
 </div>
 <br><br>
 <div id="chart_div"></div>
-<button id="testButton">Data</button>
+
 
 <br>
 <div class="container">
   <h2>Recent Data Values</h2>
   <div class="table-responsive">
-    <table style"width:30%;" class="table">
+    <table class="table">
       <thead>
         <tr>
           <th>Time</th>
@@ -76,16 +74,16 @@
         <% var index = Math.min(20, data.length); %>
         <% for(var i = 0; i < index; i++) { %>
         <tr>
-          <td style="width:10%">
-            <%= (new Date(data[i].date)).toUTCString() %>
+          <td>
+            <%= data[i].date %>
           </td>
-          <td style="width:5%">
+          <td>
             <%= data[i].temp %>
           </td>
-          <td style="width:5%">
+          <td>
             <%= data[i].light %>
           </td>
-          <td style="width:10%">
+          <td>
             <%= data[i].pH %>
           </td>
         </tr>
