@@ -10,37 +10,64 @@
 <form class="form-inline" >
  <br>
  <div class="form-group">
-   <h2></h2>
+   <h2>Height</h2>
   <br>
-   <label for="xaxis">X-axis: </label>
-   <select class="form-control" name="stringX">
-    <option value="Time">Time</option>
-    <option value = "Temperature">Temperature</option>
-    <option value = "Light">Light</option>
-    <option value = "pH">pH</option>
+   <select class="form-control" name="tens">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
   </select>
-  and
-  <label for="yaxis">Y-axis: </label>
-  <select class="form-control" name="stringY">
-    <option value="Time">Time</option>
-    <option value = "Temperature">Temperature</option>
-    <option value = "Light">Light</option>
-    <option value = "pH">pH</option>
+  <select class="form-control" name="units">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
   </select>
-  <br>
-  Use data from:
-  <select class="form-control" name="timeSpan">
-    <option value="1">the past 6 hours</option>
-    <option value="2">the past day</option>
-    <option value="3">the past 3 days</option>
-    <option value="4">the past week</option>
-    <option value="5">the past 2 weeks</option>
-    <option value="6">the past month</option>
-    <option value="7">the past 2 months</option>
+  .
+  <select class="form-control" name="decimal">
+    <option>0</option>
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+    <option>6</option>
+    <option>7</option>
+    <option>8</option>
+    <option>9</option>
   </select>
+   inches
 
+   <br>
+   <br>
+
+   <h2>Colour</h2>
+   <br>
+   On a scale from 1 to 5, how healthy is the colour of your plant(s)?
+   <select class="form-control" name="tens">
+    <option>1</option>
+    <option>2</option>
+    <option>3</option>
+    <option>4</option>
+    <option>5</option>
+  </select>
 </div>
 <br>
-
+<br>
+  <button id="log-data">Log Data</button>
+</form>
 </body>
 </html>
