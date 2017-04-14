@@ -49,6 +49,8 @@
         controller:'DataCtrl',
       }).when('/dashboard', {
         controller: 'DashboardCtrl'
+      }).when('/logging', {
+        controller: 'LoggingCtrl',
       }).otherwise({
         redirectTo: '/'
       });
@@ -72,6 +74,10 @@
       slug: 'history',
       title: "Past Experiments",
       templateUrl:"history.ejs"
+    }, {
+      slug: 'logging',
+      title: "Report Data",
+      templateUrl:"logging.ejs"
     }];
   };
 
@@ -88,6 +94,9 @@
   };
 
   DashboardCtrl = function($scope, $location) {
+  };
+
+  LoggingCtrl = function($scope, $location) {
   };
 
   MainCtrl = function($scope, $location) {

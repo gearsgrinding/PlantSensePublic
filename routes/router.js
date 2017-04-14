@@ -31,6 +31,14 @@ module.exports = function(app, passport) {
             res.render(path.resolve('views/home.ejs'),{data:data});
         })
   });
+    app.get('/logging.ejs',function(req, res) {
+      dataSchema.find(function(err, data) {
+            if (err)
+                res.send(err);
+
+            res.render(path.resolve('views/logging.ejs'),{data:data});
+        })
+  });
     app.get('/history.ejs',function(req, res) {
         hypothesisSchema.find(function(err, hypothesis) {
             if (err)
