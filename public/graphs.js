@@ -6,7 +6,7 @@ function buttonClickDraw(strX,strY,formTime) {
 
 function drawChart(x, y, formTime) {
  var data = new google.visualization.DataTable();
- console.log(x);
+ var limit = false;
  switch (x) {
   case "Time":
   data.addColumn('date', 'Day');
@@ -20,8 +20,15 @@ function drawChart(x, y, formTime) {
   case "pH":
   data.addColumn('number', 'pH');
   break;
+  case "Colour":
+  data.addColumn('number', 'Colour');
+  limit = true;
+  break;
+  case "Height":
+  data.addColumn('number', 'Height');
+  limit = true;
+  break;
 }
-console.log(y);
 switch (y) {
   case "Time":
   data.addColumn('date', 'Day');
@@ -35,9 +42,16 @@ switch (y) {
   case "pH":
   data.addColumn('number', 'pH');
   break;
+  case "Colour":
+  data.addColumn('number', 'Colour');
+  limit = true;
+  break;
+  case "Height":
+  data.addColumn('number', 'Height');
+  limit = true;
+  break;
 }
-console.log(formTime);
-data.addRows(dataTest(x, y, formTime));
+data.addRows(dataTest(x, y, limit, formTime));
 
 var options = {
  chart: {
@@ -64,51 +78,65 @@ function createArray(length) {
   return arr;
 }
 
-function filterData(dataArr, endTime, startTime, xCol, yCol) {
+function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
   var count = 0;
   for(i = 0; i < dataArr.length; i++){
     var newDate = new Date(dataArr[i].date);
     if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
-      count++;
+      if(!limit || (dataArr[i].height != -1)) {
+        count++;
+      }
     }
   }
-  console.log(count);
   var dataArray = createArray(count, 2);
-
   var index = 0;
   for (i = 0; i < dataArr.length; i++) {
-  var newDate = new Date(dataArr[i].date);
-  if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
-      switch(xCol) {
-        case "Time":
-        dataArray[index][0] = newDate;
-        break;
-        case "Temperature":
-        dataArray[index][0] = dataArr[i].temp;
-        console.log(dataArr[i].temp);
-        break;
-        case "Light":
-        dataArray[index][0] = dataArr[i].light;
-        break;
-        case "pH":
-        dataArray[index][0] = dataArr[i].pH;
-        break;
+    var newDate = new Date(dataArr[i].date);
+    if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
+      if(!limit || (dataArr[i].height != -1)) {
+        switch(xCol) {
+          case "Time":
+          dataArray[index][0] = newDate;
+          break;
+          case "Temperature":
+          dataArray[index][0] = dataArr[i].temp;
+          console.log(dataArr[i].temp);
+          break;
+          case "Light":
+          dataArray[index][0] = dataArr[i].light;
+          break;
+          case "pH":
+          dataArray[index][0] = dataArr[i].pH;
+          break;
+          case "colour":
+          dataArray[index][0] = dataArr[i].colour;
+          break;
+          case "height":
+          dataArray[index][0] = dataArr[i].height;
+          break;
+        }
+        switch(yCol) {
+          case "Time":
+          dataArray[index][1] = newDate;
+          break;
+          case "Temperature":
+          dataArray[index][1] = dataArr[i].temp;
+          break;
+          case "Light":
+          dataArray[index][1] = dataArr[i].light;
+          break;
+          case "pH":
+          dataArray[index][1] = dataArr[i].pH;
+          break;
+          case "colour":
+          dataArray[index][1] = dataArr[i].colour;
+          break;
+          case "height":
+          dataArray[index][1] = dataArr[i].height;
+          break;
+        }
+        index++;
       }
-      switch(yCol) {
-        case "Time":
-        dataArray[index][1] = newDate;
-        break;
-        case "Temperature":
-        dataArray[index][1] = dataArr[i].temp;
-        break;
-        case "Light":
-        dataArray[index][1] = dataArr[i].light;
-        break;
-        case "pH":
-        dataArray[index][1] = dataArr[i].pH;
-        break;
-      }
-      index++;
     }
   }
   return dataArray;
@@ -122,7 +150,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
     var response = JSON.parse(xhttp.responseText);
   }
 
-  function dataTest(xCol, yCol, formTime){
+  function dataTest(xCol, yCol, limit, formTime){
 
     var durationInMinutes = 0;
     switch(formTime) {
@@ -155,7 +183,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol) {
     var dataTry = httpGet(url);
     console.log(JSON.parse(dataTry));
     var startDate = new Date(myStartDate);
-    var dataArr = filterData(JSON.parse(dataTry), date, startDate, xCol, yCol);
+    var dataArr = filterData(JSON.parse(dataTry), date, startDate, xCol, yCol, limit);
     console.log(dataArr);
     return dataArr;
   };

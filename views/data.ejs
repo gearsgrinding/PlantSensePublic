@@ -23,6 +23,8 @@
       <option value = "Temperature">Temperature</option>
       <option value = "Light">Light</option>
       <option value = "pH">pH</option>
+      <option value = "Colour">Colour</option>
+      <option value = "Height">Height</option>
     </select>
     and
     <label for="yaxis">Y-axis: </label>
@@ -31,6 +33,8 @@
       <option value = "Temperature">Temperature</option>
       <option value = "Light">Light</option>
       <option value = "pH">pH</option>
+      <option value = "Colour">Colour</option>
+      <option value = "Height">Height</option>
     </select>
     <br>
     Use data from:
@@ -46,13 +50,10 @@
 
   </div>
   <br>
-  <input  type="text" value=<%= data %> name="testText">
   <dataPart class = "invisible">
     <%= data %>
   </dataPart>
   <button id="render-chart" onclick="buttonClickDraw(this.form.stringX.value,this.form.stringY.value,this.form.timeSpan.value)">Render Graph</button>
-
-  <button id="render-chart" onclick="testFunction(<%= data %>)">testFunction</button>
 </form>
 
 
