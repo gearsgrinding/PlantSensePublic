@@ -1,54 +1,19 @@
 <!DOCTYPE html>
 <html>
   <head>
+   
   </head>
   <body>
 
 
 <h1>Log Growth</h1>
 
-<form class="form-inline" >
+<form class="form-inline" method="post" action="/logging">
  <br>
  <div class="form-group">
    <h2>Height</h2>
   <br>
-   <select class="form-control" name="tens">
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-  </select>
-  <select class="form-control" name="units">
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-  </select>
-  .
-  <select class="form-control" name="decimal">
-    <option>0</option>
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-    <option>6</option>
-    <option>7</option>
-    <option>8</option>
-    <option>9</option>
-  </select>
+   <input type="number" name="height">
    inches
 
    <br>
@@ -57,13 +22,20 @@
    <h2>Colour</h2>
    <br>
    On a scale from 1 to 5, how healthy is the colour of your plant(s)?
-   <select class="form-control" name="tens">
+   <select class="form-control" name="colour">
     <option>1</option>
     <option>2</option>
     <option>3</option>
     <option>4</option>
     <option>5</option>
   </select>
+
+<% var index = data.length; %>
+<% var id = data[index-1].id %>
+  <select class = "invisible" name="id"> 
+  <option><%=id%></option>
+  </select>
+
 </div>
 <br>
 <br>

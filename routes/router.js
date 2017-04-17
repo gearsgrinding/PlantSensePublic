@@ -20,6 +20,7 @@ module.exports = function(app, passport) {
                 res.send(err);
 
             res.render(path.resolve('views/data.ejs'),{data:data});
+                
         })
 
     });
@@ -314,6 +315,20 @@ app.put('/finish/:id', function(req, res) {
         });
 });
 
+app.post('/logging',function(req, res, next) {
+    console.log(req.body.height);
+    req.params.height = req.body.height;
+    req.params.colour = req.body.colour;
+    dataSchema.update({_id: req.body.id}, req.body,{upsert:true}, function(err, result) {
+        if (!err) {
+            
+        } else {
+                return res.send(err); // 500 error
+
+            }
+        });
+    res.redirect('/');
+});
 
 };
 

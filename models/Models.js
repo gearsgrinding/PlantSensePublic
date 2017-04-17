@@ -29,7 +29,9 @@ var dataSchema = new schema({
   date: { type: Date, default: Date.now },
   pH: {type : Number},
   light: {type : Number},
-  temp: {type : Number}
+  temp: {type : Number},
+  height: {type: Number, default: -1},
+  colour: {type: Number, default: -1}
 });
 
 
@@ -113,9 +115,9 @@ var hypothesisSchema =  mongoose.model('Hypothesis', hypothesisSchema);
 var login = mongoose.model('Login', userSchema);
 var data = mongoose.model('Data', dataSchema);
 
-
 module.exports = {
   hypothesisSchema : hypothesisSchema,
   Login : login,
-  Data : data
+  Data : data,
+
 };
