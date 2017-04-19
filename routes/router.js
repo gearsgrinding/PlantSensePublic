@@ -255,6 +255,12 @@ app.post('/data',function(req, res, next) {
     data.pH = req.body.pH;
     data.light = req.body.light;
     data.temp = req.body.temp;
+    if (typeof req.body.height != "undefined") {
+      data.height = req.body.height;
+    }
+    if (typeof req.body.colour != "undefined") {
+      data.colour = req.body.colour;
+    }
 
     data.save(function(err) {
         if (err)
