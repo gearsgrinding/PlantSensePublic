@@ -139,6 +139,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
           break;
         }
         index++;
+        console.log(dataArray[index]);
       }
     }
   }
