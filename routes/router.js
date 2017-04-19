@@ -313,10 +313,12 @@ app.get('/dataAfter',function(req, res, next) {
 
 });
 
-app.put('/finish/:id', function(req, res) {
+app.put('/finish/:id/:conclusion/:concludingText', function(req, res) {
 
     req.body.terminated = true;
-    req.body.endTime  = Date.now();   
+    req.body.endTime  = Date.now();
+    req.body.conclusion = req.params.conclusion;
+    req.body.concludingText = req.params.concludingText;
     hypothesisSchema.update({_id: req.params.id}, req.body,{upsert:true}, function(err, result) {
         if (!err) {
             return res.json(result);
