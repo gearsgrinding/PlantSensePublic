@@ -78,10 +78,10 @@
               <%= (new Date(data[i].date)).toUTCString() %>
             </td>
             <td style="width:5%">
-              <%= data[i].temp %>
+              <%= data[i].temp.toFixed(2) %>
             </td>
             <td style="width:5%">
-              <%= data[i].light %>
+              <%= data[i].light.toFixed(2) %>
             </td>
             <td style="width:10%">
               <%= data[i].pH %>
