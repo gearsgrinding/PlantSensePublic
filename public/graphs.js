@@ -83,12 +83,10 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
   for(i = 0; i < dataArr.length; i++){
     var newDate = new Date(dataArr[i].date);
     if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
-      console.log(limit);
-      console.log(dataArr[i].height);
+
       if(!limit || (dataArr[i].height != -1)) {
         count++;
       }
-      console.log(count);
     }
   }
   var dataArray = createArray(count, 2);
@@ -139,16 +137,13 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
           break;
         }
         index++;
-        console.log(dataArray[index]);
       }
     }
   }
-  console.log(dataArray);
   return dataArray;
 }
 
   function drawData() {
-    console.log("test");
     var xhttp = new XMLHttpRequest();
     xhttp.open("GET", "https://plantsense.herokuapp.com/data", false);
     xhttp.send();
