@@ -1,45 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-   
+
   </head>
   <body>
 
 
-<h1>Log Growth</h1>
+<div class="container">
+  <h1>Log Growth</h1>
+  <form class="form-inline" method="post" action="/logging">
+   <br>
+   <div class="form-group">
+     <h2>Height</h2>
+     <input type="number" name="height">
+     inches
 
-<form class="form-inline" method="post" action="/logging">
- <br>
- <div class="form-group">
-   <h2>Height</h2>
+     <br>
+     <br>
+
+     <h2>Colour</h2>
+
+     On a scale from 1 to 5, how healthy is the colour of your plant(s)?
+     <select class="form-control" name="colour">
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+    </select>
+
+  <% var index = data.length; %>
+  <% var id = data[index-1].id %>
+    <select class = "invisible" name="id">
+    <option><%=id%></option>
+    </select>
+
+  </div>
   <br>
-   <input type="number" name="height">
-   inches
-
-   <br>
-   <br>
-
-   <h2>Colour</h2>
-   <br>
-   On a scale from 1 to 5, how healthy is the colour of your plant(s)?
-   <select class="form-control" name="colour">
-    <option>1</option>
-    <option>2</option>
-    <option>3</option>
-    <option>4</option>
-    <option>5</option>
-  </select>
-
-<% var index = data.length; %>
-<% var id = data[index-1].id %>
-  <select class = "invisible" name="id"> 
-  <option><%=id%></option>
-  </select>
-
+  <br>
+    <button id="log-data">Log Data</button>
+  </form>
 </div>
-<br>
-<br>
-  <button id="log-data">Log Data</button>
-</form>
 </body>
 </html>

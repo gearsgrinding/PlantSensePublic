@@ -11,15 +11,15 @@
   <title>PlantSense</title>
   <meta name="description" content="">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" type="text/css" href="css/app.css">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="//ajax.googleapis.com/ajax/libs/angularjs/1.0.7/angular.min.js"></script>
   <script type="text/javascript" src = "/bootstap_bullshit.js"></script>
   <link href="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.2/css/bootstrap.css" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="css/app.css">
   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
   <script type="text/javascript" src = "/angularLoad.js"></script>
   <script type="text/javascript" src = "/graphs.js"></script>
-  
+
 
   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"> -->
   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script> -->
@@ -28,7 +28,7 @@
 </head>
 
 <body ng-controller="MainCtrl">
-
+<h3>PlantSense</h3>
   <div ng-controller="TabCtrl">
     <tabset>
       <tab ng-repeat="tab in tabs" heading="{{tab.title}}" active="tab.active" select="onTabSelected(tab.slug)">
@@ -119,7 +119,8 @@
 
       };
       </script>
-       <div class="logoutButton"> 
+        <!-- <h1><PlantSense</h1> -->
+       <div class="logoutButton">
         <a  href="/logout" class="btn btn-default btn-sm">Logout</a>
       </div>
     </body>

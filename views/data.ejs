@@ -8,96 +8,93 @@
 </head>
 <body>
 
-
-    <h2>Graphing</h2>
-
-  <form class="form-inline" >
-
-   <br>
-   <div class="form-group">
-     Choose factors to plot against each other on the x- and y-axis.
-     <br>
-     <label for="xaxis">X-axis: </label>
-     <select class="form-control" name="stringX">
-      <option value="Time">Time</option>
-      <option value = "Temperature">Temperature</option>
-      <option value = "Light">Light</option>
-      <option value = "pH">pH</option>
-      <option value = "Colour">Colour</option>
-      <option value = "Height">Height</option>
-    </select>
-    and
-    <label for="yaxis">Y-axis: </label>
-    <select class="form-control" name="stringY">
-      <option value="Time">Time</option>
-      <option value = "Temperature">Temperature</option>
-      <option value = "Light">Light</option>
-      <option value = "pH">pH</option>
-      <option value = "Colour">Colour</option>
-      <option value = "Height">Height</option>
-    </select>
-    <br>
-    Use data from:
-    <select class="form-control" name="timeSpan">
-      <option value="1">the past 6 hours</option>
-      <option value="2">the past day</option>
-      <option value="3">the past 3 days</option>
-      <option value="4">the past week</option>
-      <option value="5">the past 2 weeks</option>
-      <option value="6">the past month</option>
-      <option value="7">the past 2 months</option>
-    </select>
-
-  </div>
-  <br>
-  <dataPart class = "invisible">
-    <%= data %>
-  </dataPart>
-  <button id="render-chart" onclick="buttonClickDraw(this.form.stringX.value,this.form.stringY.value,this.form.timeSpan.value)">Render Graph</button>
-</form>
-
-
-</div>
-<br><br>
-<div id="chart_div"></div>
-<button id="testButton">Data</button>
-
-<br>
 <div class="container">
-  <h2>Recent Data Values</h2>
-  <div class="table-responsive">
-    <table style"width:30%;" class="table">
-      <thead>
-        <tr>
-          <th>Time</th>
-          <th>Temperature</th>
-          <th>Light</th>
-          <th>pH</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% var index = Math.min(20, data.length); %>
-        <% for(var i = 0; i < index; i++) { %>
-        <tr>
-          <td style="width:10%">
-            <%= (new Date(data[i].date)).toUTCString() %>
-          </td>
-          <td style="width:5%">
-            <%= data[i].temp %>
-          </td>
-          <td style="width:5%">
-            <%= data[i].light %>
-          </td>
-          <td style="width:10%">
-            <%= data[i].pH %>
-          </td>
-        </tr>
-        <% } %>
-      </tbody>
-    </table>
-    <p>
+  <h1>Graphing</h1>
+  <div class="container">
+    <form class="form-inline" >
+      <div class="form-group">
+         Choose factors to plot against each other on the x- and y-axis.
+         <br>
+         <label for="xaxis">X-axis: </label>
+         <select class="form-control" name="stringX">
+          <option value="Time">Time</option>
+          <option value = "Temperature">Temperature</option>
+          <option value = "Light">Light</option>
+          <option value = "pH">pH</option>
+          <option value = "Colour">Colour</option>
+          <option value = "Height">Height</option>
+        </select>
+        and
+        <label for="yaxis">Y-axis: </label>
+        <select class="form-control" name="stringY">
+          <option value="Time">Time</option>
+          <option value = "Temperature">Temperature</option>
+          <option value = "Light">Light</option>
+          <option value = "pH">pH</option>
+          <option value = "Colour">Colour</option>
+          <option value = "Height">Height</option>
+        </select>
+        <br>
+        Use data from:
+        <select class="form-control" name="timeSpan">
+          <option value="1">the past 6 hours</option>
+          <option value="2">the past day</option>
+          <option value="3">the past 3 days</option>
+          <option value="4">the past week</option>
+          <option value="5">the past 2 weeks</option>
+          <option value="6">the past month</option>
+          <option value="7">the past 2 months</option>
+        </select>
 
-    </p>
+      </div>
+      <br>
+      <dataPart class = "invisible">
+        <%= data %>
+      </dataPart>
+      <button id="render-chart" onclick="buttonClickDraw(this.form.stringX.value,this.form.stringY.value,this.form.timeSpan.value)">Render Graph</button>
+    </form>
+  </div>
+</div>
+
+<hr />
+
+<div class="container">
+  <h1>Recent Data Values</h1>
+  <div class="container">
+    <div class="table-responsive">
+      <table style"width:30%;" class="table">
+        <thead>
+          <tr>
+            <th>Time</th>
+            <th>Temperature</th>
+            <th>Light</th>
+            <th>pH</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% var index = Math.min(20, data.length); %>
+          <% for(var i = 0; i < index; i++) { %>
+          <tr>
+            <td style="width:10%">
+              <%= (new Date(data[i].date)).toUTCString() %>
+            </td>
+            <td style="width:5%">
+              <%= data[i].temp %>
+            </td>
+            <td style="width:5%">
+              <%= data[i].light %>
+            </td>
+            <td style="width:10%">
+              <%= data[i].pH %>
+            </td>
+          </tr>
+          <% } %>
+        </tbody>
+      </table>
+      <p>
+
+      </p>
+    </div>
   </div>
 </div>
 

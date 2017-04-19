@@ -5,29 +5,30 @@
   <body>
 
 
-<h1>Finished Experiments</h1>
-<ul>
-  <% experiments.forEach(function(experiment) { %>
-  <%if (experiment.terminated) { %>
+  <div class="container">
+    <h1>Finished Experiments</h1>
+    <ul>
+      <% experiments.forEach(function(experiment) { %>
+      <%if (experiment.terminated) { %>
 
-  <li>
-    <input type="checkbox" checked>
-    <i></i>
-    <h2>Hypothesis: <%= experiment.hypothesis %></h2>
-    <div>
-      Started: <%= experiment.startTime %>
-      <br>
-      Ended: <%= experiment.endTime %>
-      <br>
-      Expected: <%= experiment.dataX %> <%= experiment.correlation %> correlated with <%= experiment.dataY %>
-      <br>
-      Conclusion: Data did <%= experiment.conclusion %> the hypothesis. <%= experiment.concludingText %>
-      <br>
-    </div>
-  </li>
-  <% } %>
-  <% }); %>
-</ul>
-
+      <li>
+        <input type="checkbox" checked>
+        <i></i>
+        <h2>Hypothesis: <%= experiment.hypothesis %></h2>
+        <div>
+          Started: <%= experiment.startTime %>
+          <br>
+          Ended: <%= experiment.endTime %>
+          <br>
+          Expected: <%= experiment.dataX %> <%= experiment.correlation %> correlated with <%= experiment.dataY %>
+          <br>
+          Conclusion: Data did <%= experiment.conclusion %> the hypothesis. <%= experiment.concludingText %>
+          <br>
+        </div>
+      </li>
+      <% } %>
+      <% }); %>
+    </ul>
+  </div>
 </body>
 </html>

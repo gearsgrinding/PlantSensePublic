@@ -41,14 +41,15 @@
   user-select: none;
 }
 
+
 html {
   width: 100%;
   height: 100%;
   perspective: 900;
   overflow-y: scroll;
-  background-color: #dce7eb;
+  background-color: #DFF2D8;
   font-family: "Titillium Web", sans-serif;
-  color: rgba(48, 69, 92, 0.8);
+  color: #333232;
 }
 
 body {
@@ -58,7 +59,7 @@ body {
   left: 50%;
   margin: 90px 0;
   transform: translate(-50%, 0);
-  box-shadow: 0 10px 0 0 #96C892 inset;
+  box-shadow: 0 10px 0 0 #7EBDC3 inset;
   background-color: #fefffa;
   width: 1000px;
   padding: 30px;
@@ -71,13 +72,16 @@ body {
     max-width: 100%;
     min-height: 100%;
     margin: 0;
-    left: 0;
     background-color: #fefffa;
   }
 }
 
+a {
+  color: #7A6263 !important;
+}
+
 h1, h2 {
-  color: #96C892;
+  color: #7A6263;
 }
 
 h1 {
@@ -99,10 +103,18 @@ h2 {
   cursor: pointer;
 }
 
+h3 {
+  color: #5A654C !important;
+  font-size: 54px !important;
+  line-height: 42px;
+  letter-spacing: 3px;
+  font-weight: 100;
+}
+
 div {
   color: rgba(48, 69, 92, 0.8);
   font-size: 17px;
-  line-height: 26px;
+  line-height: 37px;
   letter-spacing: 1px;
   position: relative;
   overflow: hidden;
@@ -125,7 +137,7 @@ ul li {
   margin: 0;
   padding-bottom: 4px;
   padding-top: 18px;
-  border-top: 1px dotted #dce7eb;
+  border-top: 1px dotted #DFF2D8;
 }
 ul li:nth-of-type(1) {
   animation-delay: 0.5s;
@@ -148,7 +160,7 @@ ul li i {
 ul li i:before, ul li i:after {
   content: "";
   position: absolute;
-  background-color: #96C892;
+  background-color: #7EBDC3;
   width: 3px;
   height: 9px;
 }
