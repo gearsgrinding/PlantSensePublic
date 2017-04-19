@@ -145,7 +145,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
   function drawData() {
     console.log("test");
     var xhttp = new XMLHttpRequest();
-    xhttp.open("GET", "http://localhost:8080/data", false);
+    xhttp.open("GET", "https://plantsense.herokuapp.com/data", false);
     xhttp.send();
     var response = JSON.parse(xhttp.responseText);
   }
@@ -179,7 +179,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
     var MS_PER_MINUTE = 60000;
     var date = new Date();
     var myStartDate = (date - durationInMinutes * MS_PER_MINUTE);
-    var url = "http://localhost:8080/data";
+    var url = "https://plantsense.herokuapp.com/data";
     var dataTry = httpGet(url);
     console.log(JSON.parse(dataTry));
     var startDate = new Date(myStartDate);
