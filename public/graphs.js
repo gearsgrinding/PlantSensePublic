@@ -111,10 +111,10 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
           case "pH":
           dataArray[index][0] = dataArr[i].pH;
           break;
-          case "colour":
+          case "Colour":
           dataArray[index][0] = dataArr[i].colour;
           break;
-          case "height":
+          case "Height":
           dataArray[index][0] = dataArr[i].height;
           break;
         }
@@ -131,10 +131,10 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
           case "pH":
           dataArray[index][1] = dataArr[i].pH;
           break;
-          case "colour":
+          case "Colour":
           dataArray[index][1] = dataArr[i].colour;
           break;
-          case "height":
+          case "Height":
           dataArray[index][1] = dataArr[i].height;
           break;
         }
