@@ -189,7 +189,7 @@ app.post('/hypothesis',function(req, res, next) {
     hypothesisTemp.hypothesis = req.body.hypothesis;
     hypothesisTemp.dataX = req.body.dataX;
     hypothesisTemp.dataY = req.body.dataY;
-    hypothesisTemp.corleation = req.body.corelation;
+    hypothesisTemp.corelation = req.body.corelation;
     hypothesisTemp.terminated = false;
     hypothesisTemp.startTime = new Date();
 
@@ -319,6 +319,7 @@ app.put('/finish/:id/:conclusion/:concludingText', function(req, res) {
     req.body.endTime  = Date.now();
     req.body.conclusion = req.params.conclusion;
     req.body.concludingText = req.params.concludingText;
+    req.body.correlation = req.params.corelation;
     hypothesisSchema.update({_id: req.params.id}, req.body,{upsert:true}, function(err, result) {
         if (!err) {
             return res.json(result);
