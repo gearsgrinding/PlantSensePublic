@@ -245,7 +245,13 @@ app.delete('hypothesis/:id', function(req, res) {
 
 app.post('/data',function(req, res, next) {
     var data = new dataSchema();
-    data.date = req.body.date;
+    
+    if (typeof req.body.date != "undefined") {
+      data.date = req.body.date;
+    }
+    else {
+      data.date = Date.now();
+    }
     data.pH = req.body.pH;
     data.light = req.body.light;
     data.temp = req.body.temp;
