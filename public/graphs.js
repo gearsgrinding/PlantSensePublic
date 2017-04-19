@@ -88,6 +88,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
       if(!limit || (dataArr[i].height != -1)) {
         count++;
       }
+      console.log(count);
     }
   }
   var dataArray = createArray(count, 2);
@@ -141,6 +142,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
       }
     }
   }
+  console.log(dataArray);
   return dataArray;
 }
 
