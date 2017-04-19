@@ -78,17 +78,16 @@
       End Experiment:
       <form class="form-inline" >
         Conclusion:
-        <div class="col-10">
-          <input class="form-control" type="text" value="What did you learn?" name="concluding">
-        </div>
+          <input class="form-control" type="text" placeholder="What did you learn?" name="concluding">
+        <br>
         Overall, we found data
         <select class="form-control" name="correlation">
           <option>did support</option>
           <option>did not support</option>
         </select>
         the hypothesis.
-        <input class="invisible" type="text" value=<%= experiment.id %> name="testText">
-        <button id="finishButton" onclick="testFunction(this.form.testText.value,this.form.correlation.value,this.form.concluding.value)">Finish Experiment</button>
+        <br>
+        <button type="submit" id="finishButton" onclick="testFunction(this.form.testText.value,this.form.correlation.value,this.form.concluding.value)">Finish Experiment</button>
 
       </form>
 

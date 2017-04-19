@@ -55,6 +55,9 @@
     </form>
   </div>
 </div>
+
+<div id="chart_div"></div>
+
 <hr />
 
 <div class="container">
@@ -68,6 +71,8 @@
             <th>Temperature</th>
             <th>Light</th>
             <th>pH</th>
+            <th>Height</th>
+            <th>Colour</th>
           </tr>
         </thead>
         <tbody>
@@ -83,9 +88,24 @@
             <td style="width:5%">
               <%= data[i].light %>
             </td>
-            <td style="width:10%">
+            <td style="width:5%">
               <%= data[i].pH %>
             </td>
+            <% if(data[i].height == -1) { %>
+              <td style="width:5%">
+                <%= data[i].height %>
+              </td>
+              <td style="width:30%">
+                <%= data[i].colour %>
+              </td>
+            <% } else { %>
+              <td style="width:5%">
+                <%= data[i].height %>
+              </td>
+              <td style="width:30%">
+                <%= data[i].colour %>
+              </td>
+            <% } %>
           </tr>
           <% } %>
         </tbody>
