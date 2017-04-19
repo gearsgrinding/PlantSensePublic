@@ -9,9 +9,9 @@
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript-lazy">
   function testFunction(testValue){
-    console.log("http://localhost:8080/finish/"+testValue);
+    console.log("https://plantsense.herokuapp.com/finish/"+testValue);
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "http://localhost:8080/finish/"+testValue, false);
+    xhttp.open("PUT", "https://plantsense.herokuapp.com/finish/"+testValue, false);
     xhttp.send();
     var response = JSON.parse(xhttp.responseText);
     location.reload();
