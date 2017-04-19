@@ -8,10 +8,11 @@
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <script type="text/javascript-lazy">
-  function testFunction(testValue){
+  function testFunction(testValue,testValue2,testValue3){
     console.log("https://plantsense.herokuapp.com/finish/"+testValue);
+    console.log();
     var xhttp = new XMLHttpRequest();
-    xhttp.open("PUT", "https://plantsense.herokuapp.com/finish/"+testValue, false);
+    xhttp.open("PUT", "https://plantsense.herokuapp.com/finish/"+testValue+"/"+testValue2+"/"+testValue3, false);
     xhttp.send();
     var response = JSON.parse(xhttp.responseText);
     location.reload();
@@ -29,31 +30,30 @@
      </div>
      <br>
      <div class="form-group">
-       (optional)
        <select class="form-control" name="dataX">
-        <option>"Time"</option>
-        <option>"Temperature"</option>
+        <option>Time</option>
+        <option>Temperature</option>
         <option>Light</option>
         <option>pH</option>
-        <option>"Growth"</option>
-        <option>"Health"</option>
+        <option>Growth</option>
+        <option>Health</option>
       </select>
-      and
+      Causes
       <select class="form-control" name="dataY">
-        <option>"Time"</option>
-        <option>"Temperature"</option>
+        <option>Time</option>
+        <option>Temperature</option>
         <option>Light</option>
         <option>pH</option>
-        <option>"Growth"</option>
-        <option>"Health"</option>
+        <option>Growth</option>
+        <option>Health</option>
       </select>
-      are
+      To
       <select class="form-control" name="corelation">
-        <option>positively</option>
-        <option>negatively</option>
-        <option>not</option>
+        <option>Increase</option>
+        <option>Decrease</option>
+        <option>Do nothing</option>
       </select>
-      correlated.
+      .
       <br>
     </div>
     <br>
@@ -81,7 +81,7 @@
       <form class="form-inline" >
         Conclusion:
         <div class="col-10">
-          <input class="form-control" type="text" value="What did you learn?" id="concluding-text">
+          <input class="form-control" type="text" value="What did you learn?" name="concluding">
         </div>
         Overall, we found data
         <select class="form-control" name="correlation">
@@ -90,7 +90,7 @@
         </select>
         the hypothesis.
         <input class="invisible" type="text" value=<%= experiment.id %> name="testText">
-        <button id="finishButton" onclick="testFunction(this.form.testText.value)">Finish Experiment</button>
+        <button id="finishButton" onclick="testFunction(this.form.testText.value,this.form.correlation.value,this.form.concluding.value)">Finish Experiment</button>
 
       </form>
 
