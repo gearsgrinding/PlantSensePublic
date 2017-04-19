@@ -83,6 +83,8 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
   for(i = 0; i < dataArr.length; i++){
     var newDate = new Date(dataArr[i].date);
     if(newDate.getTime() >= startTime && newDate.getTime() <= endTime) {
+      console.log(limit);
+      console.log(dataArr[i].height);
       if(!limit || (dataArr[i].height != -1)) {
         count++;
       }
