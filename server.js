@@ -22,7 +22,7 @@ app.use(flash());
 app.set('view engine', 'ejs');  
 
 
-mongoose.connect('mongodb://heroku_pt1cf244:heroku_pt1cf244@ds163360.mlab.com:63360/heroku_pt1cf244');
+mongoose.connect('mongodb://heroku_pt1cf244:Tkss00ll@ds163360.mlab.com:63360/heroku_pt1cf244');
 app.use(express.static(path.join(__dirname, 'public')));
 
 var db = mongoose.connection;
