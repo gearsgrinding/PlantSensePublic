@@ -180,6 +180,7 @@ function filterData(dataArr, endTime, startTime, xCol, yCol, limit) {
     var date = new Date();
     var myStartDate = (date - durationInMinutes * MS_PER_MINUTE);
     var url = "https://plantsense.herokuapp.com/data";
+    
     var dataTry = httpGet(url);
     console.log(JSON.parse(dataTry));
     var startDate = new Date(myStartDate);
